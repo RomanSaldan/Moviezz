@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/tvVideoName_LIT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Some video name"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_margin="5dp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/ivTrailer_LIT"
+                android:layout_width="250dp"
+                android:layout_height="135dp"
+                android:src="@drawable/placeholder_trailer"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                android:id="@+id/tvTrailerDescription_LIT"
+                android:textColor="@color/colorTextPrimary"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description [HD]"/>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/colorDivider"/>
+
+</LinearLayout>

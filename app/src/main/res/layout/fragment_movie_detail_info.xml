@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nsvAllScroll_FMDI"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="7dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/ivPoster_FMDI"
+                    android:layout_width="141dp"
+                    android:layout_height="212dp"
+                    android:layout_below="@+id/rbMovieRating_FMDI"
+                    android:layout_gravity="left|top"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/tvCertification_FMDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/ivPoster_FMDI"
+                    android:layout_alignStart="@id/ivPoster_FMDI"
+                    android:layout_below="@id/ivPoster_FMDI"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="PG"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"/>
+
+                <TextView
+                    android:id="@+id/tvTitle_FMDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@+id/ivPoster_FMDI"
+                    android:layout_toRightOf="@+id/ivPoster_FMDI"
+                    android:text="Movie title (2015)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvTagline_FMDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tvTitle_FMDI"
+                    android:layout_alignStart="@+id/tvTitle_FMDI"
+                    android:layout_below="@+id/tvTitle_FMDI"
+                    android:text="tagline long line bla bla bla lbas fdsf sdf sdf "
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorTextSecondary"/>
+
+                <TextView
+                    android:id="@+id/tvGenreTitle_FMDI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tvTitle_FMDI"
+                    android:layout_alignStart="@id/tvTitle_FMDI"
+                    android:layout_below="@id/tvTagline_FMDI"
+                    android:layout_marginTop="7dp"
+                    android:text="Genre"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvGenres_FMDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tvTagline_FMDI"
+                    android:layout_alignStart="@+id/tvTagline_FMDI"
+                    android:layout_below="@+id/tvGenreTitle_FMDI"
+                    android:text="detective, comedy, dramma"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"/>
+
+                <TextView
+                    android:id="@+id/tvCountryTitle_FMDI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tvGenreTitle_FMDI"
+                    android:layout_alignStart="@id/tvGenreTitle_FMDI"
+                    android:layout_below="@id/tvGenres_FMDI"
+                    android:layout_marginTop="7dp"
+                    android:text="Country"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvCountries_FMDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvCountryTitle_FMDI"
+                    android:layout_toEndOf="@+id/ivPoster_FMDI"
+                    android:layout_toRightOf="@+id/ivPoster_FMDI"
+                    android:text="USA, Canada, France"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"/>
+
+                <TextView
+                    android:id="@+id/tvDurationTitle_FMDI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tvCountryTitle_FMDI"
+                    android:layout_alignStart="@id/tvCountryTitle_FMDI"
+                    android:layout_below="@id/tvCountries_FMDI"
+                    android:layout_marginTop="7dp"
+                    android:text="Duration"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvDuration_FMDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvDurationTitle_FMDI"
+                    android:layout_toEndOf="@+id/ivPoster_FMDI"
+                    android:layout_toRightOf="@+id/ivPoster_FMDI"
+                    android:text="120 mins"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"/>
+
+                <TextView
+                    android:id="@+id/tvReleaseState_FMDI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tvDurationTitle_FMDI"
+                    android:layout_alignStart="@id/tvDurationTitle_FMDI"
+                    android:layout_below="@id/tvDuration_FMDI"
+                    android:layout_marginTop="7dp"
+                    android:text="Released"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvReleaseDate_FMDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvReleaseState_FMDI"
+                    android:layout_toEndOf="@+id/ivPoster_FMDI"
+                    android:layout_toRightOf="@+id/ivPoster_FMDI"
+                    android:text="19.06.2010"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"/>
+
+                <TextView
+                    android:id="@+id/tvBudgetTitle_FMDI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tvReleaseState_FMDI"
+                    android:layout_alignStart="@id/tvReleaseState_FMDI"
+                    android:layout_below="@id/tvReleaseDate_FMDI"
+                    android:layout_marginTop="7dp"
+                    android:text="Budget"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvBudget_FMDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tvReleaseDate_FMDI"
+                    android:layout_alignStart="@+id/tvReleaseDate_FMDI"
+                    android:layout_below="@+id/tvBudgetTitle_FMDI"
+                    android:text="999 999 999 $"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"/>
+
+                <TextView
+                    android:id="@+id/tvRevenueTitle_FMDI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tvBudgetTitle_FMDI"
+                    android:layout_alignStart="@id/tvBudgetTitle_FMDI"
+                    android:layout_below="@id/tvBudget_FMDI"
+                    android:layout_marginTop="7dp"
+                    android:text="Revenue"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"/>
+
+                <TextView
+                    android:id="@+id/tvProfit_FMDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tvBudget_FMDI"
+                    android:layout_alignStart="@+id/tvBudget_FMDI"
+                    android:layout_below="@+id/tvRevenueTitle_FMDI"
+                    android:text="999 999 999 99 $"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"/>
+
+                <RatingBar
+                    android:id="@+id/rbMovieRating_FMDI"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/tvTitle_FMDI"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:numStars="1"
+                    android:rating="1" />
+
+                <TextView
+                    android:id="@+id/tvRating_FMDI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/rbMovieRating_FMDI"
+                    android:layout_toRightOf="@id/rbMovieRating_FMDI"
+                    android:text="7 (1023 votes)"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/tvProfit_FMDI">
+
+                    <Button
+                        android:id="@+id/btnWeb_FMDI"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="WEB"
+                        android:layout_weight="1"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@drawable/flat_button_color"
+                        android:visibility="gone"/>
+
+                    <Button
+                        android:id="@+id/btnImdb_FMDI"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="IMDB"
+                        android:layout_weight="1"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@drawable/flat_button_color"/>
+
+                    <Button
+                        android:id="@+id/btnReview_FMDI"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:text="REVIEW"
+                        android:layout_weight="1"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@drawable/flat_button_color"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvOverview_FMDI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvOverviewTitle_FMDI"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Overview"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorTextPrimary"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/ivOverviewIndicator_FMDI"
+                        android:src="@drawable/ic_expand_more_black_18dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvOverview_FMDI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="italic"
+                    android:visibility="gone"
+                    android:textColor="@color/colorTextSecondary"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cvSimilars_FMDI"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Similar movies:"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorTextPrimary"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/rvSimilar_FMDI"
+                    android:layout_width="match_parent"
+                    android:layout_height="165dp"/>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
