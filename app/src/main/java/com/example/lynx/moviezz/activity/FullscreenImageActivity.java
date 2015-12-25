@@ -3,7 +3,9 @@ package com.example.lynx.moviezz.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.adapter.FullscreenPageAdapter;
@@ -29,6 +31,9 @@ public class FullscreenImageActivity extends AppCompatActivity {
     @Bind(R.id.vpFullscreenImage_AFI)
     protected ViewPagerZoom vpFullscreenImage_AFI;
 
+    @Bind(R.id.tvPageIndicator)
+    protected TextView tvPageIndicator;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,5 +44,24 @@ public class FullscreenImageActivity extends AppCompatActivity {
         vpAdater = new FullscreenPageAdapter(getSupportFragmentManager(), data);
         vpFullscreenImage_AFI.setAdapter(vpAdater);
         vpFullscreenImage_AFI.setCurrentItem(currentPosition);
+        tvPageIndicator.setText(currentPosition+1 + "/" + data.size());
+        vpFullscreenImage_AFI.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                tvPageIndicator.setText(position+1 + "/" + data.size());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
+
+
 }
