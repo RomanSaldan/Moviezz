@@ -23,9 +23,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.lynx.moviezz.R;
+import com.example.lynx.moviezz.activity.FullscreenPosterActivity;
 import com.example.lynx.moviezz.adapter.ReviewsAdapter;
 import com.example.lynx.moviezz.adapter.SimilarsAdapter;
 import com.example.lynx.moviezz.global.Constants;
+import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.get_genres.Genre;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.MovieRelease;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ProductionCountry;
@@ -148,6 +150,13 @@ public class MovieDetailInfoFragment extends Fragment {
         Intent imdbIntent = new Intent();
         imdbIntent.setData(Uri.parse(url));
         startActivity(imdbIntent);
+    }
+
+    @OnClick(R.id.ivPoster_FMDI)
+    protected void clickPoster(View v) {
+        Intent intent = new Intent(getActivity(), FullscreenPosterActivity.class);
+        intent.putExtra(Constants.EXTRA_FULLSCREEN_POSTER_PATH, data.poster_path);
+        startActivity(intent);
     }
 
     @OnClick(R.id.btnReview_FMDI)

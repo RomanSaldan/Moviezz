@@ -16,6 +16,7 @@ public class Constants {
     public static final String EXTRA_DATA = "data";
     public static final String EXTRA_IMAGE = "extraImage";
     public static final String EXTRA_CURRENT_IMAGE_POSITION = "currentImagePosition";
+    public static final String EXTRA_FULLSCREEN_POSTER_PATH = "posterPath";
 
     public static final int MOVIE_DETAILS_TAB_COUNT = 4;
 

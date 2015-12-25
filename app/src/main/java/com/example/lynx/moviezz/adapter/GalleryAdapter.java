@@ -59,9 +59,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((GalleryImageVH) holder).ivImage_LIGI.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Logg.d("Clicked! " + image.file_path);
                     //TODO handle click image
-                    //TODO set current image, and adapterData in intent!
                     intent.putExtra(Constants.EXTRA_CURRENT_IMAGE_POSITION, position);
                     mCtx.startActivity(intent);
                 }
@@ -71,9 +69,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((GalleryPosterVH) holder).ivPoster_LIGP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Logg.d("Clicked! " + image.file_path);
                     //TODO handle click poster
-                    //TODO set current image, and adapterData in intent!
                     intent.putExtra(Constants.EXTRA_CURRENT_IMAGE_POSITION, position);
                     mCtx.startActivity(intent);
                 }

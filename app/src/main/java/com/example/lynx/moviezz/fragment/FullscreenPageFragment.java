@@ -30,7 +30,7 @@ public class FullscreenPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.fullscreen_page_fragment, container, false);
+                R.layout.fragment_fullscreen_image, container, false);
         final ImageView ivFullscreenImage_FPF = (ImageView) rootView.findViewById(R.id.ivFullscreenImage_FPF);
         final ProgressBar pbImageDownload_FOF = (ProgressBar) rootView.findViewById(R.id.pbImageDownload_FPF);
         BaseImage image = (BaseImage) getArguments().getSerializable(Constants.EXTRA_IMAGE);

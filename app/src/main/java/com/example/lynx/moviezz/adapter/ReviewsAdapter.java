@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lynx.moviezz.R;
-import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.Review;
 
 import java.util.List;
@@ -20,6 +19,8 @@ import java.util.List;
 public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHolder> {
 
     private List<Review> data;
+
+
 
     public ReviewsAdapter(List<Review> data) {
         this.data = data;

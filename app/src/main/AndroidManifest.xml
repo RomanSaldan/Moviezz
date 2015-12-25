@@ -18,7 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".activity.FullscreenImageActivity"
+            android:theme="@style/MyFullscreenAppCompatActivity"/>
+
+        <activity android:name=".activity.FullscreenPosterActivity"
             android:theme="@style/MyFullscreenAppCompatActivity"/>
 
         <activity android:name=".activity.SplashActivity"
