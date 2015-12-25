@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.adapter.GalleryAdapter;
@@ -30,9 +32,18 @@ public class MovieDetailGalleryFragment extends Fragment {
     public RecyclerView.Adapter galleryAdapter;
     private RecyclerView.LayoutManager lmGallery;
 
+    //region ButterKnife binds
     @Bind(R.id.rvGallery_FMDG)
     protected RecyclerView rvGallery_FMDG;
 
+    @Bind(R.id.llContentGallery_FMDG)
+    protected LinearLayout llContentGallery_FMDG;
+
+    @Bind(R.id.tvGalleryError_FMDG)
+    protected TextView tvCastError_FMDG;
+    //endregion
+
+    //region ButterKnife clicks
     @OnClick(R.id.btnPosters_FMDG)
     protected void clickPosters(View v) {
         galleryAdapter = new GalleryAdapter(getActivity(), data.images.posters, Constants.LIST_ITEM_GALLERY_POSTER);
@@ -56,6 +67,7 @@ public class MovieDetailGalleryFragment extends Fragment {
         rvGallery_FMDG.setLayoutManager(lmGallery);
         rvGallery_FMDG.setAdapter(galleryAdapter);
     }
+    //endregion
 
     @Nullable
     @Override
@@ -63,6 +75,10 @@ public class MovieDetailGalleryFragment extends Fragment {
         data = (ResponseDetailMovieInfo) getArguments().getSerializable(Constants.EXTRA_DATA);
         View view = inflater.inflate(R.layout.fragment_movie_detail_gallery, container, false);
         ButterKnife.bind(this, view);
+        if(data.images.backdrops.size()==0 && data.images.posters.size()==0) {
+            llContentGallery_FMDG.setVisibility(View.GONE);
+            tvCastError_FMDG.setVisibility(View.VISIBLE);
+        }
         return view;
     }
 

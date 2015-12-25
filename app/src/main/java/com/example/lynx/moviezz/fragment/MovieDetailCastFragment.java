@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.adapter.CastAdapter;
@@ -30,11 +31,18 @@ public class MovieDetailCastFragment extends Fragment {
     @Bind(R.id.rvCast_FMDC)
     protected RecyclerView rvCast_FMDC;
 
+    @Bind(R.id.tvCastError_FMDC)
+    protected TextView tvCastError_FMDC;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         data = (ResponseDetailMovieInfo) getArguments().getSerializable(Constants.EXTRA_DATA);
         View view = inflater.inflate(R.layout.fragment_movie_detail_cast, container, false);
         ButterKnife.bind(this, view);
+        if(data.casts.crew.size()==0 && data.casts.cast.size()==0) {
+            rvCast_FMDC.setVisibility(View.GONE);
+            tvCastError_FMDC.setVisibility(View.VISIBLE);
+        }
         return view;
     }
 

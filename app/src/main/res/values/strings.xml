@@ -10,5 +10,11 @@
 
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
+    <string name="err_msg_no_trailers">Sorry, trailers of this film is unavailable</string>
+    <string name="err_msg_no_images">Sorry, images and posters of this movie is unavailable</string>
+    <string name="err_msg_no_cast">Sorry, information about actors and crew of this film is unavailable</string>
+
+    <!--Error messages-->
+
 
 </resources>

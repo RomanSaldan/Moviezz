@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.adapter.TrailersAdapter;
@@ -30,12 +31,19 @@ public class MovieDetailTrailersFragment extends Fragment {
     @Bind(R.id.rvTrailers_FMDT)
     protected RecyclerView rvTrailers_FMDT;
 
+    @Bind(R.id.tvTrailersError_FMDT)
+    protected TextView tvTrailersError_FMDT;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         data = (ResponseDetailMovieInfo) getArguments().getSerializable(Constants.EXTRA_DATA);
         View view = inflater.inflate(R.layout.fragment_movie_detail_trailers, container, false);
         ButterKnife.bind(this, view);
+        if(data.trailers.youtube.size()==0) {
+            rvTrailers_FMDT.setVisibility(View.GONE);
+            tvTrailersError_FMDT.setVisibility(View.VISIBLE);
+        }
         return view;
     }
 
