@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class ResponsePersonById implements Serializable {
 
-    public boolean aadult;
+    public boolean adult;
     public String[] also_known_as;
     public String biography;
     public String birthday;
@@ -20,4 +20,7 @@ public class ResponsePersonById implements Serializable {
     public float popularity;
     public String profile_path;
 
+    public MovieCredits movie_credits;
+    public PersonImages images;
+    public PersonTaggedImages tagged_images;
 }

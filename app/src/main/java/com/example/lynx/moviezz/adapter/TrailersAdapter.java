@@ -2,6 +2,7 @@ package com.example.lynx.moviezz.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class TrailersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         vh.tvVideoName_LIT.setText(trailer.name);
         vh.tvTrailerDescription_LIT.setText(trailer.type + " [" + trailer.size + "]");
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        vh.cvTrailer_LIT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = YouTubeStandalonePlayer.createVideoIntent(
@@ -58,10 +59,12 @@ public class TrailersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static class TrailersVH extends RecyclerView.ViewHolder {
         public TextView tvVideoName_LIT;
         public TextView tvTrailerDescription_LIT;
+        public CardView cvTrailer_LIT;
         public TrailersVH(View itemView) {
             super(itemView);
             tvVideoName_LIT = (TextView) itemView.findViewById(R.id.tvVideoName_LIT);
             tvTrailerDescription_LIT = (TextView) itemView.findViewById(R.id.tvTrailerDescription_LIT);
+            cvTrailer_LIT = (CardView) itemView.findViewById(R.id.cvTrailer_LIT);
         }
     }
 }

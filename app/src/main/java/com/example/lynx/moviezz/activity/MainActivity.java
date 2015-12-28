@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
                         movieDetailFragment.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, movieDetailFragment).addToBackStack("Tag").commit();
                         break;
+                    case R.id.menuItemCalendar:
+
+                        break;
                 }
                 //TODO handle menu clicks;
                 item.setChecked(true);

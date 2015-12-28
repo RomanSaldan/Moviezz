@@ -61,7 +61,7 @@ public interface TmdbApi {
     @GET("/search/person?api_key=" + Constants.API_KEY)
     void searchPersonByName(@Query("query") String query, @Query("page") int page, Callback<ResponseSearchPersonByName> callback);
 
-    @GET("/person/{id}?api_key=" + Constants.API_KEY)
+    @GET("/person/{id}?append_to_response=movie_credits,images,tagged_images&api_key=" + Constants.API_KEY)
     void getPersonByID(@Path("id") int id, Callback<ResponsePersonById> callback);
 
     @GET("/person/{id}/movie_credits?api_key=" + Constants.API_KEY)
