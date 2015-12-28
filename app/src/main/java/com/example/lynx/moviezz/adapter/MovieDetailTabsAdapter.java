@@ -58,7 +58,7 @@ public class MovieDetailTabsAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return Constants.MOVIE_DETAILS_TAB_COUNT;
+        return 4;
     }
 
     @Override

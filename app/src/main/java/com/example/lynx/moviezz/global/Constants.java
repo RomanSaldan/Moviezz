@@ -13,12 +13,11 @@ public class Constants {
     public static final String API_KEY = "c7b8800fb43dc8a7ae72d65d93a4767b";
 
     public static final String EXTRA_MOVIE_ID = "extraMovieID";
+    public static final String EXTRA_PERSON_ID = "extraPersonID";
     public static final String EXTRA_DATA = "data";
     public static final String EXTRA_IMAGE = "extraImage";
     public static final String EXTRA_CURRENT_IMAGE_POSITION = "currentImagePosition";
     public static final String EXTRA_FULLSCREEN_POSTER_PATH = "posterPath";
-
-    public static final int MOVIE_DETAILS_TAB_COUNT = 4;
 
     public static final int LIST_ITEM_HEADER = 0;
     public static final int LIST_ITEM_ACTOR = 1;

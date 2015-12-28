@@ -79,7 +79,7 @@ public class MovieDetailFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("");
 
         movieId = getArguments().getInt(Constants.EXTRA_MOVIE_ID);
-        initData(movieId);
+        initMovieData(movieId);
 
         return rootView;
     }
@@ -94,7 +94,7 @@ public class MovieDetailFragment extends Fragment {
         return false;
     }
 
-    private final void initData(int _movieId) {
+    private final void initMovieData(int _movieId) {
         TmdbApiManager.getInstance().getTmdbApi().getMovieInfoByID(_movieId, new Callback<ResponseDetailMovieInfo>() {
             @Override
             public void success(ResponseDetailMovieInfo responseDetailMovieInfo, Response response) {

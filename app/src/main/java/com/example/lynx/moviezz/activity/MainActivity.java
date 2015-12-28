@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.fragment.MovieDetailFragment;
+import com.example.lynx.moviezz.fragment.PersonDetailFragment;
 import com.example.lynx.moviezz.global.Constants;
 
 import butterknife.Bind;
@@ -66,13 +67,18 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menuItemAbout:
                         getSupportActionBar().hide();
                         MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
-                        Bundle bundle = new Bundle();
-                        bundle.putInt(Constants.EXTRA_MOVIE_ID, 15);
-                        movieDetailFragment.setArguments(bundle);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, movieDetailFragment).addToBackStack("Tag").commit();
+                        Bundle movieBundle = new Bundle();
+                        movieBundle.putInt(Constants.EXTRA_MOVIE_ID, 15);
+                        movieDetailFragment.setArguments(movieBundle);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, movieDetailFragment).addToBackStack("movieTag").commit();
                         break;
                     case R.id.menuItemCalendar:
-
+                        getSupportActionBar().hide();
+                        PersonDetailFragment personDetailFragment = new PersonDetailFragment();
+                        Bundle personBundle = new Bundle();
+                        personBundle.putInt(Constants.EXTRA_PERSON_ID, 1245);
+                        personDetailFragment.setArguments(personBundle);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, personDetailFragment).addToBackStack("personTag").commit();
                         break;
                 }
                 //TODO handle menu clicks;

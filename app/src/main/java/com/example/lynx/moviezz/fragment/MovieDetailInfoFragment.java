@@ -30,7 +30,6 @@ import com.example.lynx.moviezz.adapter.ReviewsAdapter;
 import com.example.lynx.moviezz.adapter.SimilarsAdapter;
 import com.example.lynx.moviezz.api.TmdbApiManager;
 import com.example.lynx.moviezz.global.Constants;
-import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.get_certifications.Certification;
 import com.example.lynx.moviezz.model.get_certifications.ResponseCertifications;
 import com.example.lynx.moviezz.model.get_genres.Genre;
