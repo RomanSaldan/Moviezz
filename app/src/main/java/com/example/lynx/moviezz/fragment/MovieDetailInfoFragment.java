@@ -1,5 +1,6 @@
 package com.example.lynx.moviezz.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,8 +28,11 @@ import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.activity.FullscreenPosterActivity;
 import com.example.lynx.moviezz.adapter.ReviewsAdapter;
 import com.example.lynx.moviezz.adapter.SimilarsAdapter;
+import com.example.lynx.moviezz.api.TmdbApiManager;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.global.Logg;
+import com.example.lynx.moviezz.model.get_certifications.Certification;
+import com.example.lynx.moviezz.model.get_certifications.ResponseCertifications;
 import com.example.lynx.moviezz.model.get_genres.Genre;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.MovieRelease;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ProductionCountry;
@@ -39,6 +44,9 @@ import java.util.Locale;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by Lynx on 14.12.2015.
@@ -184,6 +192,34 @@ public class MovieDetailInfoFragment extends Fragment {
         dialogReview.setTitle(data.title);
         dialogReview.show();
     }
+
+    @OnClick(R.id.ivHelp_FMDI)
+    protected void clickHelp(View v) {
+        TmdbApiManager.getInstance().getTmdbApi().getCertifications(new Callback<ResponseCertifications>() {
+            @Override
+            public void success(ResponseCertifications responseCertifications, Response response) {
+                String msg = "";
+                String outCert = getMainCertificationStr();
+                for(Certification c : responseCertifications.certifications.us)
+                    if(c.certification.equalsIgnoreCase(outCert)) msg = c.meaning;
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), android.R.style.Theme_Material_Dialog_Alert);
+                builder.setTitle(tvCertification_FMDI.getText().toString())
+                        .setMessage(msg)
+                        .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                builder.create().show();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
+    }
     //endregion
 
     @Nullable
@@ -214,7 +250,7 @@ public class MovieDetailInfoFragment extends Fragment {
         tvRating_FMDI.setText(String.format("%s (%d votes)", String.valueOf(data.vote_average), data.vote_count));
 
         tvOverview_FMDI.setText(data.overview);
-        tvCertification_FMDI.setText(getMainCertificationStr());
+        tvCertification_FMDI.setText("US: " + getMainCertificationStr());
         if(data.reviews.total_results>0) btnReview_FMDI.setVisibility(View.VISIBLE);
         if(!data.homepage.equalsIgnoreCase("")) btnWeb_FMDI.setVisibility(View.VISIBLE);
 
@@ -266,7 +302,7 @@ public class MovieDetailInfoFragment extends Fragment {
             if(mr.iso_3166_1.equalsIgnoreCase("us")) result+= mr.certification + ", ";
         }
         if(result.length()>=2) result = result.substring(0, result.length()-2);
-        return "USA: " + result;
+        return result;
     }
 
     private String getPrettyDuration() {

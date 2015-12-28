@@ -284,6 +284,16 @@
 
                 </LinearLayout>
 
+                <ImageView
+                    android:src="@drawable/selector_help_button"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/ivHelp_FMDI"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignBottom="@+id/tvCertification_FMDI"
+                    android:layout_toRightOf="@+id/tvCertification_FMDI"
+                    android:layout_toEndOf="@+id/tvCertification_FMDI" />
+
 
             </RelativeLayout>
 

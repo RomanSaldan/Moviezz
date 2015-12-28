@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 import com.example.lynx.moviezz.R;
@@ -22,10 +23,8 @@ import com.example.lynx.moviezz.api.TmdbApiManager;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ResponseDetailMovieInfo;
-import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 import java.net.HttpURLConnection;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,24 +43,28 @@ public class MovieDetailFragment extends Fragment {
 
     //region ButterKnife binds
     @Nullable
-    @Bind(R.id.ivCollapsed_AMD)
+    @Bind(R.id.ivCollapsed_FMD)
     protected ImageView collapsingImage;
 
     @Nullable
-    @Bind(R.id.viewpager)
+    @Bind(R.id.viewpager_FMD)
     protected ViewPager viewPager;
 
     @Nullable
-    @Bind(R.id.toolbar_AMD)
+    @Bind(R.id.toolbar_FMD)
     protected Toolbar toolbar_AMD;
 
     @Nullable
-    @Bind(R.id.tabLayout_AMD)
+    @Bind(R.id.tabLayout_FMD)
     protected TabLayout tabLayout_AMD;
 
     @Nullable
-    @Bind(R.id.collapsing_toolbar)
+    @Bind(R.id.collapsingToolbar_FMD)
     protected CollapsingToolbarLayout collapsingToolbarLayout;
+
+    @Nullable
+    @Bind(R.id.pbInital_FMD)
+    protected ProgressBar pbInital_FMD;
     //endregion
 
     @Nullable
@@ -99,7 +102,7 @@ public class MovieDetailFragment extends Fragment {
                     movieData = responseDetailMovieInfo;
                     ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(movieData.title);
                     Glide.with(MovieDetailFragment.this).load(Constants.BASE_IMAGE_URL + movieData.backdrop_path).into(collapsingImage);
-
+                    pbInital_FMD.setVisibility(View.GONE);
                     movieDetailTabsAdapter = new MovieDetailTabsAdapter(getChildFragmentManager(), responseDetailMovieInfo);
                     viewPager.setAdapter(movieDetailTabsAdapter);
                     tabLayout_AMD.setupWithViewPager(viewPager);
