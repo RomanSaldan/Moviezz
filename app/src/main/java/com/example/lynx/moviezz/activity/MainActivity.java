@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         getSupportActionBar().hide();
                         PersonDetailFragment personDetailFragment = new PersonDetailFragment();
                         Bundle personBundle = new Bundle();
-                        personBundle.putInt(Constants.EXTRA_PERSON_ID, 1245);
+                        personBundle.putInt(Constants.EXTRA_PERSON_ID, 240);
                         personDetailFragment.setArguments(personBundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, personDetailFragment).addToBackStack("personTag").commit();
                         break;

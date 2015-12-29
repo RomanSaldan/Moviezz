@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.adapter.PersonDetailsTabsAdapter;
 import com.example.lynx.moviezz.api.TmdbApiManager;
@@ -23,6 +25,7 @@ import com.example.lynx.moviezz.model.get_person_by_id.ResponsePersonById;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -51,6 +54,12 @@ public class PersonDetailFragment extends Fragment {
 
     @Bind(R.id.pbLoadingPersonInfo_FPD)
     protected ProgressBar pbLoadingPersonInfo_FPD;
+
+    @Bind(R.id.ivCirclePerson_FPD)
+    protected CircleImageView ivCirclePerson_FPD;
+
+    @Bind(R.id.tvPersonTitle_FPD)
+    protected TextView tvPersonTitle_FPD;
     //endregion
 
     @Nullable
@@ -59,10 +68,8 @@ public class PersonDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_person_details, container, false);
         ButterKnife.bind(this, rootView);
         setHasOptionsMenu(true);
-
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar_FPD);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("");
 
         personId = getArguments().getInt(Constants.EXTRA_PERSON_ID);
         initPersonData(personId);
@@ -85,9 +92,9 @@ public class PersonDetailFragment extends Fragment {
             public void success(ResponsePersonById responsePersonById, Response response) {
                 Logg.d("Successful fetched person data");
                 personData = responsePersonById;
+                Glide.with(getActivity()).load(Constants.BASE_SMALL_IMAGE_URL + personData.profile_path).into(ivCirclePerson_FPD);
                 pbLoadingPersonInfo_FPD.setVisibility(View.GONE);
-                //TODO got person data
-                ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(personData.name);
+                tvPersonTitle_FPD.setText(personData.name);
                 detailsTabsAdapter = new PersonDetailsTabsAdapter(getChildFragmentManager(), personData);
                 vpPerson_FPD.setAdapter(detailsTabsAdapter);
                 tabLayout_FPD.setupWithViewPager(vpPerson_FPD);

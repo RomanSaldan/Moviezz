@@ -162,7 +162,7 @@ public class MovieDetailInfoFragment extends Fragment {
     @OnClick(R.id.ivPoster_FMDI)
     protected void clickPoster(View v) {
         Intent intent = new Intent(getActivity(), FullscreenPosterActivity.class);
-        intent.putExtra(Constants.EXTRA_FULLSCREEN_POSTER_PATH, data.poster_path);
+        intent.putExtra(Constants.EXTRA_FULLSCREEN_IMAGE_PATH, data.poster_path);
         startActivity(intent);
     }
 

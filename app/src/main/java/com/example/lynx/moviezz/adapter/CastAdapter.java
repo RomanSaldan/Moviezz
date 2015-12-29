@@ -62,7 +62,7 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((HeaderHV) holder).tvHeader_LICH.setText("Directors:");
         } else if(position <= directorCount) {
             final CrewInfo director = directorList.get(position-1);
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + director.profile_path).placeholder(R.drawable.portrait_placeholder).into(((CrewVH)holder).ivCrew_LICC);
+            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + director.profile_path).placeholder(R.drawable.placeholder_portrait).into(((CrewVH)holder).ivCrew_LICC);
             ((CrewVH)holder).tvCrewName_LICC.setText(director.name);
             ((CrewVH)holder).tvJob_LICC.setText(director.job);
             ((CrewVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,7 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((HeaderHV) holder).tvHeader_LICH.setText("Actors:");
         } else if(position < directorCount+2+data.cast.size()) {
             final ActorInfo actor = data.cast.get(position - directorCount - 2);
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + actor.profile_path).placeholder(R.drawable.portrait_placeholder).into(((ActorVH)holder).ivActor_LICA);
+            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + actor.profile_path).placeholder(R.drawable.placeholder_portrait).into(((ActorVH)holder).ivActor_LICA);
             ((ActorVH)holder).tvActorName_LICA.setText(actor.name);
             ((ActorVH)holder).tvCharacter_LICA.setText(actor.character);
             ((ActorVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +91,7 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else {
             final CrewInfo crew = data.crew.get(position - directorCount-2-data.cast.size());
             if(crew.job.equalsIgnoreCase("Director")) return;
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + crew.profile_path).placeholder(R.drawable.portrait_placeholder).into((((CrewVH)holder).ivCrew_LICC));
+            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + crew.profile_path).placeholder(R.drawable.placeholder_portrait).into((((CrewVH)holder).ivCrew_LICC));
             ((CrewVH)holder).tvCrewName_LICC.setText(crew.name);
             ((CrewVH)holder).tvJob_LICC.setText(crew.job);
             ((CrewVH) holder).rootView.setOnClickListener(new View.OnClickListener() {

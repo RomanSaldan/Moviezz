@@ -35,80 +35,80 @@ import retrofit.http.Query;
 public interface TmdbApi {
 
     //region Movie API
-    @GET("/search/movie?api_key=" + Constants.API_KEY)
+    @GET("/search/movie?api_key=" + Constants.TMDB_API_KEY)
     void searchMovieByTitle(@Query("query") String query, @Query("page") int page, Callback<ResponseSearchMovieByTitle> callback);
 
-    @GET("/movie/{id}?append_to_response=trailers,releases,reviews,similar,casts,images&include_image_language=en,null&api_key=" + Constants.API_KEY)
+    @GET("/movie/{id}?append_to_response=trailers,releases,reviews,similar,casts,images&include_image_language=en,null&api_key=" + Constants.TMDB_API_KEY)
     void getMovieInfoByID(@Path("id") int id, Callback<ResponseDetailMovieInfo> callback);
 
-    @GET("/find/{imdbID}?external_source=&imdb_id&api_key=" + Constants.API_KEY)
+    @GET("/find/{imdbID}?external_source=&imdb_id&api_key=" + Constants.TMDB_API_KEY)
     void getMovieByImdbID(@Path("imdbID") String imdbID, Callback<ResponseFindMovieByImdbId> callback);
 
-    @GET("/movie/{id}/images?include_image_language=en,null&api_key=" + Constants.API_KEY)
+    @GET("/movie/{id}/images?include_image_language=en,null&api_key=" + Constants.TMDB_API_KEY)
     void getMovieImagesByID(@Path("id") int id, Callback<ResponseMovieImages> callback);
 
-    @GET("/movie/{id}/videos?api_key=" + Constants.API_KEY)
+    @GET("/movie/{id}/videos?api_key=" + Constants.TMDB_API_KEY)
     void getMovieVideos(@Path("id") int id, Callback<ResponseMovieVideos> callback);
 
-    @GET("/movie/{id}/reviews?api_key=" + Constants.API_KEY)
+    @GET("/movie/{id}/reviews?api_key=" + Constants.TMDB_API_KEY)
     void getMovieReviews(@Path("id") int id, @Query("page") int page, Callback<ResponseMovieReviews> callback);
 
-    @GET("/movie/{id}/similar?append_to_response=popular&api_key=" + Constants.API_KEY)
+    @GET("/movie/{id}/similar?append_to_response=popular&api_key=" + Constants.TMDB_API_KEY)
     void getSimilarMovies(@Path("id") int id, @Query("page") int page, Callback<ResponseSimilarMovies> callback);    // not recommended, but similar :(
     //endregion
 
     //region Person API
-    @GET("/search/person?api_key=" + Constants.API_KEY)
+    @GET("/search/person?api_key=" + Constants.TMDB_API_KEY)
     void searchPersonByName(@Query("query") String query, @Query("page") int page, Callback<ResponseSearchPersonByName> callback);
 
-    @GET("/person/{id}?append_to_response=movie_credits,images,tagged_images&api_key=" + Constants.API_KEY)
+    @GET("/person/{id}?append_to_response=movie_credits,images,tagged_images&api_key=" + Constants.TMDB_API_KEY)
     void getPersonByID(@Path("id") int id, Callback<ResponsePersonById> callback);
 
-    @GET("/person/{id}/movie_credits?api_key=" + Constants.API_KEY)
+    @GET("/person/{id}/movie_credits?api_key=" + Constants.TMDB_API_KEY)
     void getPersonCredits(@Path("id") int id, Callback<ResponsePersonCredits> callback);
 
-    @GET("/person/{id}/images?api_key=" + Constants.API_KEY)
+    @GET("/person/{id}/images?api_key=" + Constants.TMDB_API_KEY)
     void getPersonImages(@Path("id") int id, Callback<ResponsePersonImages> callback);
     //endregion
 
     //region Collections API
-    @GET("/search/collection?api_key=" + Constants.API_KEY)
+    @GET("/search/collection?api_key=" + Constants.TMDB_API_KEY)
     void searchCollectionByName(@Query("query") String query, @Query("page") int page, Callback<ResponseCollectionByName> callback);
 
-    @GET("/collection/{id}?api_key=" + Constants.API_KEY)
+    @GET("/collection/{id}?api_key=" + Constants.TMDB_API_KEY)
     void getCollectionByID(@Path("id") int id, Callback<ResponseCollectionById> callback);
 
-    @GET("/collection/{id}/images?include_image_language=en,null&api_key=" + Constants.API_KEY)
+    @GET("/collection/{id}/images?include_image_language=en,null&api_key=" + Constants.TMDB_API_KEY)
     void getCollectionImages(@Path("id") int id, Callback<ResponseCollectionImages> callback);
     //endregion
 
     //region Calendar API
-    @GET("/movie/now_playing?api_key=" + Constants.API_KEY)
+    @GET("/movie/now_playing?api_key=" + Constants.TMDB_API_KEY)
     void getNowPlayng(@Query("page") int page, Callback<ResponseNowPlaying> callback);
 
-    @GET("/movie/upcoming?api_key=" + Constants.API_KEY)
+    @GET("/movie/upcoming?api_key=" + Constants.TMDB_API_KEY)
     void getUpcomingMovies(@Query("page") int page, Callback<ResponseUpcomingMovies> callback);
     //endregion
 
     //region Top API
-    @GET("/movie/top_rated?api_key=" + Constants.API_KEY)
+    @GET("/movie/top_rated?api_key=" + Constants.TMDB_API_KEY)
     void getTopRatedMovies(@Query("page") int page, Callback<ResponseTopRatedMovies> callback);
 
-    @GET("/movie/popular?api_key=" + Constants.API_KEY)
+    @GET("/movie/popular?api_key=" + Constants.TMDB_API_KEY)
     void getPopularMovies(@Query("page") int page, Callback<ResponsePopularMovies> callback);
 
-    @GET("/genre/{id}/movies?api_key=" + Constants.API_KEY)
+    @GET("/genre/{id}/movies?api_key=" + Constants.TMDB_API_KEY)
     void getPopularMoviesByGenre(@Path("id") int id, @Query("page") int page, Callback<ResponsePopularMoviesByGenre> callback);
 
-    @GET("/person/popular?api_key=" + Constants.API_KEY)
+    @GET("/person/popular?api_key=" + Constants.TMDB_API_KEY)
     void getPopularActors(@Query("'page") int page, Callback<ResponsePopularActors> callback);
     //endregion
 
     //region Other API
-    @GET("/certification/movie/list?api_key=" + Constants.API_KEY)
+    @GET("/certification/movie/list?api_key=" + Constants.TMDB_API_KEY)
     void getCertifications(Callback<ResponseCertifications> callback);
 
-    @GET("/genre/movie/list?api_key=" + Constants.API_KEY)
+    @GET("/genre/movie/list?api_key=" + Constants.TMDB_API_KEY)
     void getListOfGenres(Callback<ResponseGenres> callback);
     //endregion
 
