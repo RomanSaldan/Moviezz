@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 public class MovieDetailCastFragment extends Fragment {
 
     private ResponseDetailMovieInfo data;
-    private RecyclerView.Adapter castAdater;
+    private RecyclerView.Adapter castAdapter;
     private RecyclerView.LayoutManager lmCast;
 
     @Bind(R.id.rvCast_FMDC)
@@ -49,9 +49,9 @@ public class MovieDetailCastFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        castAdater = new CastAdapter(getActivity(), data.casts);
+        castAdapter = new CastAdapter(getActivity(), data.casts);
         lmCast = new LinearLayoutManager(getActivity());
         rvCast_FMDC.setLayoutManager(lmCast);
-        rvCast_FMDC.setAdapter(castAdater);
+        rvCast_FMDC.setAdapter(castAdapter);
     }
 }

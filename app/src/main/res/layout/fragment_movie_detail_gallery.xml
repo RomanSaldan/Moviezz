@@ -40,7 +40,8 @@
                 android:layout_marginBottom="5dp"
                 android:textColor="@android:color/white"
                 app:cornerRadius="15dp"
-                app:buttonColor="@color/colorPrimary"/>
+                app:buttonColor="@color/colorPrimary"
+                app:shadowEnabled="false"/>
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/btnPosters_FMDG"
@@ -54,7 +55,8 @@
                 android:layout_marginBottom="5dp"
                 android:textColor="@android:color/white"
                 app:cornerRadius="15dp"
-                app:buttonColor="@color/colorPrimary"/>
+                app:buttonColor="@color/colorPrimary"
+                app:shadowEnabled="false"/>
 
         </LinearLayout>
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="2dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivPoster_LIPCrew"
+                android:layout_height="115dp"
+                android:layout_width="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Movie title cool"
+                android:id="@+id/tvTitle_LIPCrew"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                android:layout_marginTop="23dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="35dp"
+                android:paddingRight="5dp"
+                android:layout_toLeftOf="@+id/ivPoster_LIPCrew"
+                android:layout_toStartOf="@+id/ivPoster_LIPCrew" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Producer, Designer"
+                android:id="@+id/tvJob_LIPCrew"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"
+                android:textStyle="italic"
+                android:layout_below="@+id/tvTitle_LIPCrew"
+                android:layout_alignLeft="@+id/tvTitle_LIPCrew"
+                android:layout_alignStart="@+id/tvTitle_LIPCrew"
+                android:layout_marginTop="5dp"
+                android:paddingRight="5dp"
+                android:layout_toLeftOf="@+id/ivPoster_LIPCrew"
+                android:layout_toStartOf="@+id/ivPoster_LIPCrew" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>

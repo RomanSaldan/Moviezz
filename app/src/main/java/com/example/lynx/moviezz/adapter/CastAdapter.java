@@ -45,13 +45,13 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         switch (viewType) {
             case Constants.LIST_ITEM_HEADER:
                 View headerView = layoutInflater.inflate(R.layout.list_item_cast_header, parent, false);
-                return new HeaderHV(headerView);
+                return new CastHeaderHV(headerView);
             case Constants.LIST_ITEM_ACTOR:
                 View actorView = layoutInflater.inflate(R.layout.list_item_cast_actor, parent, false);
-                return new ActorVH(actorView);
+                return new CastActorVH(actorView);
             case Constants.LIST_ITEM_CREW:
                 View crewView = layoutInflater.inflate(R.layout.list_item_cast_crew, parent, false);
-                return new CrewVH(crewView);
+                return new CastCrewVH(crewView);
         }
         return null;
     }
@@ -59,13 +59,13 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(position == 0) {
-            ((HeaderHV) holder).tvHeader_LICH.setText("Directors:");
+            ((CastHeaderHV) holder).tvHeader_LICH.setText("Directors:");
         } else if(position <= directorCount) {
             final CrewInfo director = directorList.get(position-1);
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + director.profile_path).placeholder(R.drawable.placeholder_portrait).into(((CrewVH)holder).ivCrew_LICC);
-            ((CrewVH)holder).tvCrewName_LICC.setText(director.name);
-            ((CrewVH)holder).tvJob_LICC.setText(director.job);
-            ((CrewVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
+            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + director.profile_path).placeholder(R.drawable.placeholder_portrait).into(((CastCrewVH)holder).ivCrew_LICC);
+            ((CastCrewVH)holder).tvCrewName_LICC.setText(director.name);
+            ((CastCrewVH)holder).tvJob_LICC.setText(director.job);
+            ((CastCrewVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Logg.d("You clicked on " + director.name + " " + director.id);
@@ -73,13 +73,13 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             });
         } else if(position == directorCount+1) {
-            ((HeaderHV) holder).tvHeader_LICH.setText("Actors:");
+            ((CastHeaderHV) holder).tvHeader_LICH.setText("Actors:");
         } else if(position < directorCount+2+data.cast.size()) {
             final ActorInfo actor = data.cast.get(position - directorCount - 2);
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + actor.profile_path).placeholder(R.drawable.placeholder_portrait).into(((ActorVH)holder).ivActor_LICA);
-            ((ActorVH)holder).tvActorName_LICA.setText(actor.name);
-            ((ActorVH)holder).tvCharacter_LICA.setText(actor.character);
-            ((ActorVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
+            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + actor.profile_path).placeholder(R.drawable.placeholder_portrait).into(((CastActorVH)holder).ivActor_LICA);
+            ((CastActorVH)holder).tvActorName_LICA.setText(actor.name);
+            ((CastActorVH)holder).tvCharacter_LICA.setText(actor.character);
+            ((CastActorVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Logg.d("You clicked on " + actor.name + " " + actor.id);
@@ -87,14 +87,14 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             });
         } else if(position == directorCount+2+data.cast.size()) {
-            ((HeaderHV) holder).tvHeader_LICH.setText("Crew:");
+            ((CastHeaderHV) holder).tvHeader_LICH.setText("Crew:");
         } else {
             final CrewInfo crew = data.crew.get(position - directorCount-2-data.cast.size());
             if(crew.job.equalsIgnoreCase("Director")) return;
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + crew.profile_path).placeholder(R.drawable.placeholder_portrait).into((((CrewVH)holder).ivCrew_LICC));
-            ((CrewVH)holder).tvCrewName_LICC.setText(crew.name);
-            ((CrewVH)holder).tvJob_LICC.setText(crew.job);
-            ((CrewVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
+            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + crew.profile_path).placeholder(R.drawable.placeholder_portrait).into((((CastCrewVH)holder).ivCrew_LICC));
+            ((CastCrewVH)holder).tvCrewName_LICC.setText(crew.name);
+            ((CastCrewVH)holder).tvJob_LICC.setText(crew.job);
+            ((CastCrewVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Logg.d("You clicked on " + crew.name + " " + crew.id);
@@ -119,22 +119,22 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return data.cast.size() + data.crew.size() + 3;
     }
 
-    public static class HeaderHV extends RecyclerView.ViewHolder {
+    public static class CastHeaderHV extends RecyclerView.ViewHolder {
         public TextView tvHeader_LICH;
 
-        public HeaderHV(View itemView) {
+        public CastHeaderHV(View itemView) {
             super(itemView);
             tvHeader_LICH = (TextView) itemView.findViewById(R.id.tvHeader_LICH);
         }
     }
 
-    public static class ActorVH extends RecyclerView.ViewHolder {
+    public static class CastActorVH extends RecyclerView.ViewHolder {
         public View rootView;
         public ImageView ivActor_LICA;
         public TextView tvActorName_LICA;
         public TextView tvCharacter_LICA;
 
-        public ActorVH(View itemView) {
+        public CastActorVH(View itemView) {
             super(itemView);
             rootView = itemView;
             ivActor_LICA = (ImageView) itemView.findViewById(R.id.ivActor_LICA);
@@ -143,13 +143,13 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    public static class CrewVH extends RecyclerView.ViewHolder {
+    public static class CastCrewVH extends RecyclerView.ViewHolder {
         public View rootView;
         public ImageView ivCrew_LICC;
         public TextView tvCrewName_LICC;
         public TextView tvJob_LICC;
 
-        public CrewVH(View itemView) {
+        public CastCrewVH(View itemView) {
             super(itemView);
             rootView = itemView;
             ivCrew_LICC = (ImageView) itemView.findViewById(R.id.ivCrew_LICC);
