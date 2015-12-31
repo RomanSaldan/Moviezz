@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.lynx.moviezz.R;
-import com.example.lynx.moviezz.adapter.CastAdapter;
+import com.example.lynx.moviezz.adapter.MovieCastAdapter;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ResponseDetailMovieInfo;
 
@@ -49,7 +49,7 @@ public class MovieDetailCastFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        castAdapter = new CastAdapter(getActivity(), data.casts);
+        castAdapter = new MovieCastAdapter(getActivity(), data.casts);
         lmCast = new LinearLayoutManager(getActivity());
         rvCast_FMDC.setLayoutManager(lmCast);
         rvCast_FMDC.setAdapter(castAdapter);

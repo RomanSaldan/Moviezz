@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lynx.moviezz.R;
-import com.example.lynx.moviezz.adapter.CreditsAdapter;
+import com.example.lynx.moviezz.adapter.PersonCreditsAdapter;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.model.get_person_by_id.ResponsePersonById;
 
@@ -41,7 +41,7 @@ public class PersonDetailCreditsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        creditsAdapter = new CreditsAdapter(getActivity(), data.movie_credits);
+        creditsAdapter = new PersonCreditsAdapter(getActivity(), data.movie_credits);
         lmCredits = new LinearLayoutManager(getActivity());
         rvCredits_FPDC.setLayoutManager(lmCredits);
         rvCredits_FPDC.setAdapter(creditsAdapter);

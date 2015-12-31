@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Lynx on 28.12.2015.
  */
 public class TaggedImageObject implements Serializable {
-    public float pect_ratio;
+    public float aspect_ratio;
     public String file_path;
     public int height;
     public int width;

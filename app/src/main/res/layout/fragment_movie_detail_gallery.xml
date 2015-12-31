@@ -29,7 +29,7 @@
             android:gravity="center_vertical">
 
             <info.hoang8f.widget.FButton
-                android:id="@+id/btnImages_FMDG"
+                android:id="@+id/btnProfile_FPDG"
                 android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_weight="1"
@@ -44,7 +44,7 @@
                 app:shadowEnabled="false"/>
 
             <info.hoang8f.widget.FButton
-                android:id="@+id/btnPosters_FMDG"
+                android:id="@+id/btnStills_FPDG"
                 android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_weight="1"
@@ -61,10 +61,10 @@
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvGallery_FMDG"
+            android:id="@+id/rvGallery_FPDG"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:layout_margin="5dp" />
 
     </LinearLayout>
 

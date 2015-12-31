@@ -26,8 +26,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.activity.FullscreenPosterActivity;
-import com.example.lynx.moviezz.adapter.ReviewsAdapter;
-import com.example.lynx.moviezz.adapter.SimilarsAdapter;
+import com.example.lynx.moviezz.adapter.MovieReviewsAdapter;
+import com.example.lynx.moviezz.adapter.MovieSimilarAdapter;
 import com.example.lynx.moviezz.api.TmdbApiManager;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.model.get_certifications.Certification;
@@ -174,7 +174,7 @@ public class MovieDetailInfoFragment extends Fragment {
         rvReviews = (RecyclerView) dialogView.findViewById(R.id.rvReviews_DR);
         lmReviews = new LinearLayoutManager(getActivity());
         rvReviews.setLayoutManager(lmReviews);
-        reviewsAdapter = new ReviewsAdapter(data.reviews.results);
+        reviewsAdapter = new MovieReviewsAdapter(data.reviews.results);
         rvReviews.setAdapter(reviewsAdapter);
         Toolbar dialogToolbar = (Toolbar) dialogView.findViewById(R.id.tbDialogReview_DR);
         dialogToolbar.setTitle(data.title);
@@ -254,7 +254,7 @@ public class MovieDetailInfoFragment extends Fragment {
         if(!data.homepage.equalsIgnoreCase("")) btnWeb_FMDI.setVisibility(View.VISIBLE);
 
         if(data.similar.results.size()>0) cvSimilars_FMDI.setVisibility(View.VISIBLE);
-        similarsAdapter = new SimilarsAdapter(getActivity(), data.similar.results);
+        similarsAdapter = new MovieSimilarAdapter(getActivity(), data.similar.results);
         lmSimilars = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvSimilar_FMDI.setLayoutManager(lmSimilars);
         rvSimilar_FMDI.setAdapter(similarsAdapter);

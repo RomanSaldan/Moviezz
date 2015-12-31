@@ -28,12 +28,12 @@ import java.util.List;
 /**
  * Created by Lynx on 21.12.2015.
  */
-public class SimilarsAdapter extends RecyclerView.Adapter<SimilarsAdapter.ViewHolder> {
+public class MovieSimilarAdapter extends RecyclerView.Adapter<MovieSimilarAdapter.ViewHolder> {
 
     private List<ShortMovieInfo> data;
     private Context mCtx;
 
-    public SimilarsAdapter(Context context, List<ShortMovieInfo> data) {
+    public MovieSimilarAdapter(Context context, List<ShortMovieInfo> data) {
         this.data = data;
         Collections.sort(data, new Comparator<ShortMovieInfo>() {
             @Override

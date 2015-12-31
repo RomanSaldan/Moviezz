@@ -19,11 +19,11 @@ import com.google.android.youtube.player.YouTubeStandalonePlayer;
 /**
  * Created by Lynx on 24.12.2015.
  */
-public class TrailersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MovieTrailersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Trailers data;
 
-    public TrailersAdapter(Trailers data) {
+    public MovieTrailersAdapter(Trailers data) {
         this.data = data;
     }
 

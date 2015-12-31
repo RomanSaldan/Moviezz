@@ -5,6 +5,7 @@ import com.example.lynx.moviezz.model.get_certifications.ResponseCertifications;
 import com.example.lynx.moviezz.model.find_movie_by_imdb_id.ResponseFindMovieByImdbId;
 import com.example.lynx.moviezz.model.get_collection_by_id.ResponseCollectionById;
 import com.example.lynx.moviezz.model.get_collection_images.ResponseCollectionImages;
+import com.example.lynx.moviezz.model.get_person_by_id.PersonTaggedImages;
 import com.example.lynx.moviezz.model.search_collection_by_name.ResponseCollectionByName;
 import com.example.lynx.moviezz.model.get_genres.ResponseGenres;
 import com.example.lynx.moviezz.model.get_movie_images_by_id.ResponseMovieImages;
@@ -69,6 +70,9 @@ public interface TmdbApi {
 
     @GET("/person/{id}/images?api_key=" + Constants.TMDB_API_KEY)
     void getPersonImages(@Path("id") int id, Callback<ResponsePersonImages> callback);
+
+    @GET("/person/{id}/tagged_images?api_key=" + Constants.TMDB_API_KEY)
+    void getPersonTaggedImages(@Path("id") int id, @Query("page") int page, Callback<PersonTaggedImages> callback);
     //endregion
 
     //region Collections API

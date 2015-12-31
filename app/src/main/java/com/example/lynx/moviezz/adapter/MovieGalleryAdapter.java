@@ -21,13 +21,13 @@ import java.util.List;
 /**
  * Created by Lynx on 23.12.2015.
  */
-public class GalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MovieGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mCtx;
     private List<BaseImage> data;
     private int itemType;   // 1 - image, 2 - poster
 
-    public GalleryAdapter(Context context, List<BaseImage> data, int itemType) {
+    public MovieGalleryAdapter(Context context, List<BaseImage> data, int itemType) {
         mCtx = context;
         this.data = data;
         this.itemType = itemType;

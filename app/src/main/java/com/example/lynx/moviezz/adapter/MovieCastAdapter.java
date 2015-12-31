@@ -1,6 +1,8 @@
 package com.example.lynx.moviezz.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.lynx.moviezz.R;
+import com.example.lynx.moviezz.fragment.PersonDetailFragment;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ActorInfo;
@@ -22,14 +25,14 @@ import java.util.List;
 /**
  * Created by Lynx on 22.12.2015.
  */
-public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MovieCastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mCtx;
     private Casts data;
     private int directorCount = 0;
     private List<CrewInfo> directorList = new ArrayList<>();
 
-    public CastAdapter(Context context, Casts data) {
+    public MovieCastAdapter(Context context, Casts data) {
         mCtx = context;
         this.data = data;
         for(CrewInfo ci : data.crew)
@@ -70,6 +73,8 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 public void onClick(View v) {
                     Logg.d("You clicked on " + director.name + " " + director.id);
                     //TODO handle director here
+                    startPersonInfoScreen(director.id);
+
                 }
             });
         } else if(position == directorCount+1) {
@@ -84,6 +89,7 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 public void onClick(View v) {
                     Logg.d("You clicked on " + actor.name + " " + actor.id);
                     //TODO handle actor here
+                    startPersonInfoScreen(actor.id);
                 }
             });
         } else if(position == directorCount+2+data.cast.size()) {
@@ -99,6 +105,7 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 public void onClick(View v) {
                     Logg.d("You clicked on " + crew.name + " " + crew.id);
                     //TODO handle crew here
+                    startPersonInfoScreen(crew.id);
                 }
             });
         }
@@ -156,5 +163,13 @@ public class CastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tvCrewName_LICC = (TextView) itemView.findViewById(R.id.tvCrewName_LICC);
             tvJob_LICC = (TextView) itemView.findViewById(R.id.tvJob_LICC);
         }
+    }
+
+    private void startPersonInfoScreen(int id) {
+        PersonDetailFragment personDetailFragment = new PersonDetailFragment();
+        Bundle personBundle = new Bundle();
+        personBundle.putInt(Constants.EXTRA_PERSON_ID, id);
+        personDetailFragment.setArguments(personBundle);
+        ((AppCompatActivity)mCtx).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, personDetailFragment).addToBackStack("someTaggie").commit();
     }
 }

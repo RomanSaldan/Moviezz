@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lynx.moviezz.R;
-import com.example.lynx.moviezz.adapter.GalleryAdapter;
+import com.example.lynx.moviezz.adapter.MovieGalleryAdapter;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ResponseDetailMovieInfo;
 
@@ -33,7 +33,7 @@ public class MovieDetailGalleryFragment extends Fragment {
     private RecyclerView.LayoutManager lmGallery;
 
     //region ButterKnife binds
-    @Bind(R.id.rvGallery_FMDG)
+    @Bind(R.id.rvGallery_FPDG)
     protected RecyclerView rvGallery_FMDG;
 
     @Bind(R.id.llContentGallery_FMDG)
@@ -44,9 +44,9 @@ public class MovieDetailGalleryFragment extends Fragment {
     //endregion
 
     //region ButterKnife clicks
-    @OnClick(R.id.btnPosters_FMDG)
+    @OnClick(R.id.btnStills_FPDG)
     protected void clickPosters(View v) {
-        galleryAdapter = new GalleryAdapter(getActivity(), data.images.posters, Constants.LIST_ITEM_GALLERY_POSTER);
+        galleryAdapter = new MovieGalleryAdapter(getActivity(), data.images.posters, Constants.LIST_ITEM_GALLERY_POSTER);
         if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             lmGallery = new GridLayoutManager(getActivity(), 4, LinearLayoutManager.VERTICAL, false);
         } else {
@@ -56,9 +56,9 @@ public class MovieDetailGalleryFragment extends Fragment {
         rvGallery_FMDG.setAdapter(galleryAdapter);
     }
 
-    @OnClick(R.id.btnImages_FMDG)
+    @OnClick(R.id.btnProfile_FPDG)
     protected void clickImages(View v) {
-        galleryAdapter = new GalleryAdapter(getActivity(), data.images.backdrops, Constants.LIST_ITEM_GALLERY_IMAGE);
+        galleryAdapter = new MovieGalleryAdapter(getActivity(), data.images.backdrops, Constants.LIST_ITEM_GALLERY_IMAGE);
         if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             lmGallery = new GridLayoutManager(getActivity(), 3, LinearLayoutManager.VERTICAL, false);
         } else {
@@ -85,7 +85,7 @@ public class MovieDetailGalleryFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        galleryAdapter = new GalleryAdapter(getActivity(), data.images.backdrops, Constants.LIST_ITEM_GALLERY_IMAGE);
+        galleryAdapter = new MovieGalleryAdapter(getActivity(), data.images.backdrops, Constants.LIST_ITEM_GALLERY_IMAGE);
         if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             lmGallery = new GridLayoutManager(getActivity(), 3, LinearLayoutManager.VERTICAL, false);
         } else {

@@ -15,6 +15,7 @@ public class Constants {
     public static final String EXTRA_MOVIE_ID = "extraMovieID";
     public static final String EXTRA_PERSON_ID = "extraPersonID";
     public static final String EXTRA_DATA = "data";
+    public static final String EXTRA_TAGGED_IMAGE_DATA = "extraTaggedImage";
     public static final String EXTRA_IMAGE = "extraImage";
     public static final String EXTRA_CURRENT_IMAGE_POSITION = "currentImagePosition";
     public static final String EXTRA_FULLSCREEN_IMAGE_PATH = "fullscreenImagePath";
@@ -25,5 +26,7 @@ public class Constants {
 
     public static final int LIST_ITEM_GALLERY_IMAGE = 1;
     public static final int LIST_ITEM_GALLERY_POSTER = 2;
+    public static final int LIST_ITEM_PERSON_GALLERY_IMAGE = 1;
+    public static final int LIST_ITEM_PERSON_GALLERY_STILL = 2;
 
 }

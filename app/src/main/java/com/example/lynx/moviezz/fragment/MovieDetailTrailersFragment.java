@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.lynx.moviezz.R;
-import com.example.lynx.moviezz.adapter.TrailersAdapter;
+import com.example.lynx.moviezz.adapter.MovieTrailersAdapter;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ResponseDetailMovieInfo;
 
@@ -50,7 +50,7 @@ public class MovieDetailTrailersFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        trailersAdapter = new TrailersAdapter(data.trailers);
+        trailersAdapter = new MovieTrailersAdapter(data.trailers);
         lmTrailers = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rvTrailers_FMDT.setAdapter(trailersAdapter);
         rvTrailers_FMDT.setLayoutManager(lmTrailers);

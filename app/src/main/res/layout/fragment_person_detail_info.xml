@@ -45,7 +45,6 @@
                         android:id="@+id/tvPersonKnowAs_FPDI"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Scarlett Johanssen\nScarlett Ingrid Johansson"
                         android:textSize="12sp"
                         android:textColor="@color/colorTextSecondary"
                         android:textStyle="italic"
@@ -66,7 +65,6 @@
                         android:id="@+id/tvPersonBirthday_FPDI"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1984-11-22 (47 years)"
                         android:textSize="13sp"
                         android:textColor="@color/colorTextPrimary"
                         android:layout_gravity="center"/>
@@ -75,7 +73,6 @@
                         android:id="@+id/tvPersonBirthplace_FPDI"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New York City - New York - USA"
                         android:textSize="13sp"
                         android:textColor="@color/colorTextPrimary"
                         android:textStyle="italic"

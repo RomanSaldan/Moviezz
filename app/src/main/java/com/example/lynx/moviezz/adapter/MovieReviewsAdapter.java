@@ -16,13 +16,13 @@ import java.util.List;
 /**
  * Created by Lynx on 21.12.2015.
  */
-public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHolder> {
+public class MovieReviewsAdapter extends RecyclerView.Adapter<MovieReviewsAdapter.ViewHolder> {
 
     private List<Review> data;
 
 
 
-    public ReviewsAdapter(List<Review> data) {
+    public MovieReviewsAdapter(List<Review> data) {
         this.data = data;
     }
 
