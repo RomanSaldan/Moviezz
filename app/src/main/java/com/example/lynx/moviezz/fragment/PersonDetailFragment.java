@@ -90,7 +90,6 @@ public class PersonDetailFragment extends Fragment {
         TmdbApiManager.getInstance().getTmdbApi().getPersonByID(id, new Callback<ResponsePersonById>() {
             @Override
             public void success(ResponsePersonById responsePersonById, Response response) {
-                Logg.d("Successful fetched person data");
                 personData = responsePersonById;
                 Glide.with(getActivity()).load(Constants.BASE_SMALL_IMAGE_URL + personData.profile_path).into(ivCirclePerson_FPD);
                 pbLoadingPersonInfo_FPD.setVisibility(View.GONE);

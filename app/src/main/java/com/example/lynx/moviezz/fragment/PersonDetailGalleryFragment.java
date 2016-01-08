@@ -71,31 +71,27 @@ public class PersonDetailGalleryFragment extends Fragment {
         data = (ResponsePersonById) getArguments().getSerializable(Constants.EXTRA_DATA);
         View rootView = inflater.inflate(R.layout.fragment_person_detail_gallery, container, false);
         ButterKnife.bind(this, rootView);
-        if(data.tagged_images.total_pages > 1) {
-            for(int i = 2; i <= data.tagged_images.total_pages; i++) {
-                final int ii = i;
-                TmdbApiManager.getInstance().getTmdbApi().getPersonTaggedImages(data.id, i, new Callback<PersonTaggedImages>() {
-                    @Override
-                    public void success(PersonTaggedImages personTaggedImages, Response response) {
-                        data.tagged_images.results.addAll(personTaggedImages.results);
-                        if(ii == data.tagged_images.total_pages) {
-                            galleryAdapter = new PersonGalleryAdapter(getActivity(), data.images.profiles);
-                            if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                                lmGallery = new GridLayoutManager(getActivity(), 4, LinearLayoutManager.VERTICAL, false);
-                            } else {
-                                lmGallery = new GridLayoutManager(getActivity(), 3, LinearLayoutManager.VERTICAL, false);
-                            }
-                            rvGallery_FPDG.setLayoutManager(lmGallery);
-                            rvGallery_FPDG.setAdapter(galleryAdapter);
+        for(int i = 1; i <= data.tagged_images.total_pages; i++) {
+            final int ii = i;
+            TmdbApiManager.getInstance().getTmdbApi().getPersonTaggedImages(data.id, i, new Callback<PersonTaggedImages>() {
+                @Override
+                public void success(PersonTaggedImages personTaggedImages, Response response) {
+                    data.tagged_images.results.addAll(personTaggedImages.results);
+                    if(ii == data.tagged_images.total_pages) {
+                        galleryAdapter = new PersonGalleryAdapter(getActivity(), data.images.profiles);
+                        if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                            lmGallery = new GridLayoutManager(getActivity(), 4, LinearLayoutManager.VERTICAL, false);
+                        } else {
+                            lmGallery = new GridLayoutManager(getActivity(), 3, LinearLayoutManager.VERTICAL, false);
                         }
+                        rvGallery_FPDG.setLayoutManager(lmGallery);
+                        rvGallery_FPDG.setAdapter(galleryAdapter);
                     }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-
-                    }
-                });
-            }
+                }
+                @Override
+                public void failure(RetrofitError error) {
+                }
+            });
         }
         return rootView;
     }
