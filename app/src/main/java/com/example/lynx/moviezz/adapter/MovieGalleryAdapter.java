@@ -15,6 +15,7 @@ import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.SerializedListContainer;
 import com.example.lynx.moviezz.model.get_movie_images_by_id.BaseImage;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -55,7 +56,10 @@ public class MovieGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         container.data = data;
         intent.putExtra(Constants.EXTRA_DATA, container);
         if(holder instanceof GalleryImageVH) {
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + image.file_path).placeholder(R.drawable.placeholder_image).into(((GalleryImageVH) holder).ivImage_LIGI);
+            Picasso.with(mCtx)
+                    .load(Constants.BASE_SMALL_IMAGE_URL + image.file_path)
+                    .placeholder(R.drawable.placeholder_image)
+                    .into(((GalleryImageVH) holder).ivImage_LIGI);
             ((GalleryImageVH) holder).ivImage_LIGI.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -65,7 +69,10 @@ public class MovieGalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             });
         } else if(holder instanceof GalleryPosterVH) {
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + image.file_path).placeholder(R.drawable.placeholder_poster).into(((GalleryPosterVH) holder).ivPoster_LIGP);
+            Picasso.with(mCtx)
+                    .load(Constants.BASE_SMALL_IMAGE_URL + image.file_path)
+                    .placeholder(R.drawable.placeholder_poster)
+                    .into(((GalleryPosterVH) holder).ivPoster_LIGP);
             ((GalleryPosterVH) holder).ivPoster_LIGP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

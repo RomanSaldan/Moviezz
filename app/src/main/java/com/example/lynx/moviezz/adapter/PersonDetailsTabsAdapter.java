@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.widget.LinearLayout;
 
 import com.example.lynx.moviezz.fragment.PersonDetailCreditsFragment;
-import com.example.lynx.moviezz.fragment.PersonDetailGalleryFragment;
 import com.example.lynx.moviezz.fragment.PersonDetailInfoFragment;
+import com.example.lynx.moviezz.fragment.PersonDetailProfileImgFragment;
+import com.example.lynx.moviezz.fragment.PersonDetailStillsImgFragment;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.model.get_person_by_id.ResponsePersonById;
 
@@ -22,7 +24,10 @@ public class PersonDetailsTabsAdapter extends FragmentPagerAdapter {
     private ResponsePersonById personData;
     private PersonDetailInfoFragment personDetailInfoFragment;
     private PersonDetailCreditsFragment personDetailCreditsFragment;
-    private PersonDetailGalleryFragment personDetailGalleryFragment;
+
+    private PersonDetailProfileImgFragment profileImgFragment;
+    private PersonDetailStillsImgFragment stillsImgFragment;
+
     private Map<Integer,Fragment> mapTabs;
 
     public PersonDetailsTabsAdapter(FragmentManager fm, ResponsePersonById data) {
@@ -42,10 +47,15 @@ public class PersonDetailsTabsAdapter extends FragmentPagerAdapter {
             personDetailCreditsFragment.setArguments(bundle);
             mapTabs.put(mapTabs.size(), personDetailCreditsFragment);
         }
-        if(data.images.profiles.size() > 0 || data.tagged_images.results.size() > 0) {
-            personDetailGalleryFragment = new PersonDetailGalleryFragment();
-            personDetailGalleryFragment.setArguments(bundle);
-            mapTabs.put(mapTabs.size(), personDetailGalleryFragment);
+        if(data.images.profiles.size() > 0) {
+            profileImgFragment = new PersonDetailProfileImgFragment();
+            profileImgFragment.setArguments(bundle);
+            mapTabs.put(mapTabs.size(), profileImgFragment);
+        }
+        if(data.tagged_images.results.size() > 0) {
+            stillsImgFragment = new PersonDetailStillsImgFragment();
+            stillsImgFragment.setArguments(bundle);
+            mapTabs.put(mapTabs.size(), stillsImgFragment);
         }
     }
 
@@ -59,7 +69,8 @@ public class PersonDetailsTabsAdapter extends FragmentPagerAdapter {
         Fragment fragment = mapTabs.get(position);
         if(fragment instanceof PersonDetailInfoFragment) return "INFO";
         else if(fragment instanceof PersonDetailCreditsFragment) return "CREDITS";
-        else if(fragment instanceof PersonDetailGalleryFragment) return "GALLERY";
+        else if(fragment instanceof PersonDetailProfileImgFragment) return "PORTRAITS";
+        else if(fragment instanceof PersonDetailStillsImgFragment) return "SCREENS";
         else return "";
     }
 

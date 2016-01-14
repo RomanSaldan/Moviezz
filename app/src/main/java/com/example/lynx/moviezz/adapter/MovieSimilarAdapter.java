@@ -20,6 +20,7 @@ import com.example.lynx.moviezz.fragment.MovieDetailFragment;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.find_movie_by_imdb_id.ShortMovieInfo;
+import com.squareup.picasso.Picasso;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -53,7 +54,9 @@ public class MovieSimilarAdapter extends RecyclerView.Adapter<MovieSimilarAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + data.get(position).poster_path).into(holder.ivSimilarPoster_LIS);
+        Picasso.with(mCtx)
+                .load(Constants.BASE_SMALL_IMAGE_URL + data.get(position).poster_path)
+                .into(holder.ivSimilarPoster_LIS);
         holder.tvRating_LIS.setText(String.valueOf(data.get(position).vote_average) + " (" + data.get(position).vote_count + ")");
         holder.tvTitle_LIS.setText(data.get(position).title);
         LayerDrawable stars = (LayerDrawable) holder.rbSimilars_LIS.getProgressDrawable();

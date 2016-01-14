@@ -34,7 +34,10 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/colorTransparentBackground</item>
-
+    </style>
+    
+    <style name="CustomTabsTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">13sp</item>
     </style>
 
 

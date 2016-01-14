@@ -18,6 +18,7 @@ import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ActorInfo;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.Casts;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.CrewInfo;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,10 @@ public class MovieCastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((CastHeaderHV) holder).tvHeader_LICH.setText("Directors:");
         } else if(position <= directorCount) {
             final CrewInfo director = directorList.get(position-1);
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + director.profile_path).placeholder(R.drawable.placeholder_portrait).into(((CastCrewVH)holder).ivCrew_LICC);
+            Picasso.with(mCtx)
+                    .load(Constants.BASE_SMALL_IMAGE_URL + director.profile_path)
+                    .placeholder(R.drawable.placeholder_portrait)
+                    .into(((CastCrewVH)holder).ivCrew_LICC);
             ((CastCrewVH)holder).tvCrewName_LICC.setText(director.name);
             ((CastCrewVH)holder).tvJob_LICC.setText(director.job);
             ((CastCrewVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +85,10 @@ public class MovieCastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((CastHeaderHV) holder).tvHeader_LICH.setText("Actors:");
         } else if(position < directorCount+2+data.cast.size()) {
             final ActorInfo actor = data.cast.get(position - directorCount - 2);
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + actor.profile_path).placeholder(R.drawable.placeholder_portrait).into(((CastActorVH)holder).ivActor_LICA);
+            Picasso.with(mCtx)
+                    .load(Constants.BASE_SMALL_IMAGE_URL + actor.profile_path)
+                    .placeholder(R.drawable.placeholder_portrait)
+                    .into(((CastActorVH)holder).ivActor_LICA);
             ((CastActorVH)holder).tvActorName_LICA.setText(actor.name);
             ((CastActorVH)holder).tvCharacter_LICA.setText(actor.character);
             ((CastActorVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +104,10 @@ public class MovieCastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         } else {
             final CrewInfo crew = data.crew.get(position - directorCount-2-data.cast.size());
             if(crew.job.equalsIgnoreCase("Director")) return;
-            Glide.with(mCtx).load(Constants.BASE_SMALL_IMAGE_URL + crew.profile_path).placeholder(R.drawable.placeholder_portrait).into((((CastCrewVH)holder).ivCrew_LICC));
+            Picasso.with(mCtx)
+                    .load(Constants.BASE_SMALL_IMAGE_URL + crew.profile_path)
+                    .placeholder(R.drawable.placeholder_portrait)
+                    .into((((CastCrewVH)holder).ivCrew_LICC));
             ((CastCrewVH)holder).tvCrewName_LICC.setText(crew.name);
             ((CastCrewVH)holder).tvJob_LICC.setText(crew.job);
             ((CastCrewVH) holder).rootView.setOnClickListener(new View.OnClickListener() {
