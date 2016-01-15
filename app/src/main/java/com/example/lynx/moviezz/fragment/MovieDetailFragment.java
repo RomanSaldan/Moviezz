@@ -116,7 +116,11 @@ public class MovieDetailFragment extends Fragment {
                 if(response.getStatus() == HttpURLConnection.HTTP_OK) {
                     movieData = responseDetailMovieInfo;
                     ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(movieData.title);
-                    Glide.with(MovieDetailFragment.this).load(Constants.BASE_IMAGE_URL + movieData.backdrop_path).into(collapsingImage);
+                    Glide.with(MovieDetailFragment.this)
+                            .load(Constants.BASE_IMAGE_URL + movieData.backdrop_path)
+                            .animate(R.animator.fade_out)
+                            .thumbnail(0.7f)
+                            .into(collapsingImage);
                     pbInital_FMD.setVisibility(View.GONE);
                     movieDetailTabsAdapter = new MovieDetailTabsAdapter(getChildFragmentManager(), responseDetailMovieInfo);
                     viewPager.setAdapter(movieDetailTabsAdapter);

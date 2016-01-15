@@ -3,12 +3,13 @@ package com.example.lynx.moviezz.adapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 
 import com.example.lynx.moviezz.fragment.MovieDetailCastFragment;
-import com.example.lynx.moviezz.fragment.MovieDetailGalleryFragment;
+import com.example.lynx.moviezz.fragment.MovieDetailImagesFragment;
 import com.example.lynx.moviezz.fragment.MovieDetailInfoFragment;
+import com.example.lynx.moviezz.fragment.MovieDetailPostersFragment;
 import com.example.lynx.moviezz.fragment.MovieDetailTrailersFragment;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ResponseDetailMovieInfo;
@@ -19,13 +20,15 @@ import java.util.Map;
 /**
  * Created by Lynx on 14.12.2015.
  */
-public class MovieDetailTabsAdapter extends FragmentPagerAdapter {
+public class MovieDetailTabsAdapter extends FragmentStatePagerAdapter {
 
     private ResponseDetailMovieInfo sourceData;
     private MovieDetailInfoFragment movieDetailInfoFragment;
     private MovieDetailCastFragment movieDetailCastFragment;
-    private MovieDetailGalleryFragment movieDetailGalleryFragment;
     private MovieDetailTrailersFragment movieDetailTrailersFragment;
+
+    private MovieDetailPostersFragment movieDetailPostersFragment;
+    private MovieDetailImagesFragment movieDetailImagesFragment;
 
     private Map<Integer,Fragment> mapTabs = new HashMap<>();
 
@@ -37,17 +40,22 @@ public class MovieDetailTabsAdapter extends FragmentPagerAdapter {
 
         movieDetailInfoFragment = new MovieDetailInfoFragment();
         movieDetailInfoFragment.setArguments(dataBundle);
-        mapTabs.put(0, movieDetailInfoFragment);
+        mapTabs.put(mapTabs.size(), movieDetailInfoFragment);
 
         if(data.casts.cast.size() > 0 && data.casts.crew.size() > 0) {
             movieDetailCastFragment = new MovieDetailCastFragment();
             movieDetailCastFragment.setArguments(dataBundle);
-            mapTabs.put(1, movieDetailCastFragment);
+            mapTabs.put(mapTabs.size(), movieDetailCastFragment);
         }
-        if(data.images.backdrops.size() > 0 | data.images.posters.size() > 1) {
-            movieDetailGalleryFragment = new MovieDetailGalleryFragment();
-            movieDetailGalleryFragment.setArguments(dataBundle);
-            mapTabs.put(mapTabs.size(), movieDetailGalleryFragment);
+        if(data.images.backdrops.size() > 0) {
+            movieDetailImagesFragment = new MovieDetailImagesFragment();
+            movieDetailImagesFragment.setArguments(dataBundle);
+            mapTabs.put(mapTabs.size(), movieDetailImagesFragment);
+        }
+        if(data.images.posters.size() > 0) {
+            movieDetailPostersFragment = new MovieDetailPostersFragment();
+            movieDetailPostersFragment.setArguments(dataBundle);
+            mapTabs.put(mapTabs.size(), movieDetailPostersFragment);
         }
         if(data.trailers.youtube.size() > 0) {
             movieDetailTrailersFragment = new MovieDetailTrailersFragment();
@@ -71,8 +79,9 @@ public class MovieDetailTabsAdapter extends FragmentPagerAdapter {
         Fragment fragment = mapTabs.get(position);
         if (fragment instanceof MovieDetailInfoFragment) return "INFO";
         else if (fragment instanceof MovieDetailCastFragment) return "CAST";
-        else if (fragment instanceof MovieDetailGalleryFragment) return "GALLERY";
-        else if (fragment instanceof MovieDetailTrailersFragment) return "TRAILERS";
+        else if(fragment instanceof MovieDetailImagesFragment) return "IMAGE";
+        else if(fragment instanceof MovieDetailPostersFragment) return "POSTER";
+        else if (fragment instanceof MovieDetailTrailersFragment) return "TRAILER";
         return "";
     }
 }

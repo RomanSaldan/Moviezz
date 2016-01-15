@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.activity.FullscreenImageActivity;
 import com.example.lynx.moviezz.global.Constants;
@@ -22,12 +23,12 @@ import java.util.List;
 /**
  * Created by Lynx on 12.01.2016.
  */
-public class StillsImgAdapter extends RecyclerView.Adapter {
+public class PersonScreensAdapter extends RecyclerView.Adapter {
 
     private Context mCtx;
     private PersonTaggedImages stills;
 
-    public StillsImgAdapter(Context mCtx, PersonTaggedImages stills) {
+    public PersonScreensAdapter(Context mCtx, PersonTaggedImages stills) {
         this.mCtx = mCtx;
         this.stills = filterStillsFromPosters(stills);
     }
@@ -43,9 +44,11 @@ public class StillsImgAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         PersonStillImgVH vh = (PersonStillImgVH) holder;
         TaggedImageObject current = stills.results.get(position);
-        Picasso.with(mCtx)
+        Glide.with(mCtx)
                 .load(Constants.BASE_SMALL_IMAGE_URL + current.file_path)
                 .placeholder(R.drawable.placeholder_image)
+                .animate(R.animator.fade_out)
+                .thumbnail(0.7f)
                 .into(vh.ivPersonStill_LIPS);
         vh.tvTitle_LIPS.setText(current.media.title);
         vh.itemView.setOnClickListener(new View.OnClickListener() {

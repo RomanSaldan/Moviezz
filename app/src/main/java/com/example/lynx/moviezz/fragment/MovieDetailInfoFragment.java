@@ -233,7 +233,11 @@ public class MovieDetailInfoFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Glide.with(this).load(Constants.BASE_IMAGE_URL + data.poster_path).into(ivPoster_FMDI);
+        Glide.with(this)
+                .load(Constants.BASE_IMAGE_URL + data.poster_path)
+                .animate(R.animator.fade_out)
+                .thumbnail(0.7f)
+                .into(ivPoster_FMDI);
         tvTitle_FMDI.setText(data.title + " (" + getYear(data.release_date) + ")");
         tvTagline_FMDI.setText(data.tagline);
         tvGenres_FMDI.setText(getGenresStr());

@@ -35,7 +35,11 @@ public class FullscreenPageFragment extends Fragment {
         final ImageView ivFullscreenImage_FPF = (ImageView) rootView.findViewById(R.id.ivFullscreenImage_FPF);
         final ProgressBar pbImageDownload_FOF = (ProgressBar) rootView.findViewById(R.id.pbImageDownload_FPF);
         BaseImage image = (BaseImage) getArguments().getSerializable(Constants.EXTRA_IMAGE);
-        Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + image.file_path).listener(new RequestListener<String, GlideDrawable>() {
+        Glide.with(getActivity()).
+                load(Constants.BASE_IMAGE_URL + image.file_path)
+                .animate(R.animator.fade_out)
+                .thumbnail(0.7f)
+                .listener(new RequestListener<String, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                 return false;

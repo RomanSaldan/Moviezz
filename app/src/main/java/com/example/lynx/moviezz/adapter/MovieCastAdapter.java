@@ -66,9 +66,11 @@ public class MovieCastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((CastHeaderHV) holder).tvHeader_LICH.setText("Directors:");
         } else if(position <= directorCount) {
             final CrewInfo director = directorList.get(position-1);
-            Picasso.with(mCtx)
+            Glide.with(mCtx)
                     .load(Constants.BASE_SMALL_IMAGE_URL + director.profile_path)
                     .placeholder(R.drawable.placeholder_portrait)
+                    .animate(R.animator.fade_out)
+                    .thumbnail(0.7f)
                     .into(((CastCrewVH)holder).ivCrew_LICC);
             ((CastCrewVH)holder).tvCrewName_LICC.setText(director.name);
             ((CastCrewVH)holder).tvJob_LICC.setText(director.job);
@@ -85,9 +87,11 @@ public class MovieCastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((CastHeaderHV) holder).tvHeader_LICH.setText("Actors:");
         } else if(position < directorCount+2+data.cast.size()) {
             final ActorInfo actor = data.cast.get(position - directorCount - 2);
-            Picasso.with(mCtx)
+            Glide.with(mCtx)
                     .load(Constants.BASE_SMALL_IMAGE_URL + actor.profile_path)
                     .placeholder(R.drawable.placeholder_portrait)
+                    .animate(R.animator.fade_out)
+                    .thumbnail(0.7f)
                     .into(((CastActorVH)holder).ivActor_LICA);
             ((CastActorVH)holder).tvActorName_LICA.setText(actor.name);
             ((CastActorVH)holder).tvCharacter_LICA.setText(actor.character);
@@ -104,9 +108,11 @@ public class MovieCastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         } else {
             final CrewInfo crew = data.crew.get(position - directorCount-2-data.cast.size());
             if(crew.job.equalsIgnoreCase("Director")) return;
-            Picasso.with(mCtx)
+            Glide.with(mCtx)
                     .load(Constants.BASE_SMALL_IMAGE_URL + crew.profile_path)
                     .placeholder(R.drawable.placeholder_portrait)
+                    .animate(R.animator.fade_out)
+                    .thumbnail(0.7f)
                     .into((((CastCrewVH)holder).ivCrew_LICC));
             ((CastCrewVH)holder).tvCrewName_LICC.setText(crew.name);
             ((CastCrewVH)holder).tvJob_LICC.setText(crew.job);
@@ -180,6 +186,6 @@ public class MovieCastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         Bundle personBundle = new Bundle();
         personBundle.putInt(Constants.EXTRA_PERSON_ID, id);
         personDetailFragment.setArguments(personBundle);
-        ((AppCompatActivity)mCtx).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, personDetailFragment).addToBackStack("someTaggie").commit();
+        ((AppCompatActivity)mCtx).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, personDetailFragment).commit();
     }
 }

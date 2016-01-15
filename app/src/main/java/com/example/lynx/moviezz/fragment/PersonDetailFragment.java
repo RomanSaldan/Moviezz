@@ -91,7 +91,11 @@ public class PersonDetailFragment extends Fragment {
             @Override
             public void success(ResponsePersonById responsePersonById, Response response) {
                 personData = responsePersonById;
-                Glide.with(getActivity()).load(Constants.BASE_SMALL_IMAGE_URL + personData.profile_path).into(ivCirclePerson_FPD);
+                Glide.with(getActivity())
+                        .load(Constants.BASE_SMALL_IMAGE_URL + personData.profile_path)
+                        .animate(R.animator.fade_out)
+                        .thumbnail(0.7f)
+                        .into(ivCirclePerson_FPD);
                 pbLoadingPersonInfo_FPD.setVisibility(View.GONE);
                 tvPersonTitle_FPD.setText(personData.name);
                 detailsTabsAdapter = new PersonDetailsTabsAdapter(getChildFragmentManager(), personData);

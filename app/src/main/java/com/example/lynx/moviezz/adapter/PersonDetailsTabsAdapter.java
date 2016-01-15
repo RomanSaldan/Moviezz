@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.widget.LinearLayout;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.lynx.moviezz.fragment.PersonDetailCreditsFragment;
 import com.example.lynx.moviezz.fragment.PersonDetailInfoFragment;
@@ -19,12 +19,11 @@ import java.util.Map;
 /**
  * Created by Lynx on 28.12.2015.
  */
-public class PersonDetailsTabsAdapter extends FragmentPagerAdapter {
+public class PersonDetailsTabsAdapter extends FragmentStatePagerAdapter {
 
     private ResponsePersonById personData;
     private PersonDetailInfoFragment personDetailInfoFragment;
     private PersonDetailCreditsFragment personDetailCreditsFragment;
-
     private PersonDetailProfileImgFragment profileImgFragment;
     private PersonDetailStillsImgFragment stillsImgFragment;
 

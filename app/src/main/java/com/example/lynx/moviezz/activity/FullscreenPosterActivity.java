@@ -37,7 +37,10 @@ public class FullscreenPosterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fullscreen_poster);
         ButterKnife.bind(this);
         String posterPath = getIntent().getStringExtra(Constants.EXTRA_FULLSCREEN_IMAGE_PATH);
-        Glide.with(this).load(Constants.BASE_IMAGE_URL + posterPath).listener(new RequestListener<String, GlideDrawable>() {
+        Glide.with(this).load(Constants.BASE_IMAGE_URL + posterPath)
+                .animate(R.animator.fade_out)
+                .thumbnail(0.7f)
+                .listener(new RequestListener<String, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                 return false;

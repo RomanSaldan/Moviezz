@@ -101,9 +101,11 @@ public class PersonCreditsAdapter extends RecyclerView.Adapter<RecyclerView.View
                     startMovieScreen(infoCast.id);
                 }
             });
-            Picasso.with(mCtx)
+            Glide.with(mCtx)
                     .load(Constants.BASE_SMALL_IMAGE_URL + infoCast.poster_path)
                     .placeholder(R.drawable.placeholder_poster)
+                    .animate(R.animator.fade_out)
+                    .thumbnail(0.7f)
                     .into(vh.ivPoster_LIPCast);
             vh.tvTitle_LIPCast.setText(String.format("%s (%d)", infoCast.title, getYear(infoCast.release_date)));
             vh.tvCharacter_LIPCast.setText(infoCast.character);
@@ -117,9 +119,11 @@ public class PersonCreditsAdapter extends RecyclerView.Adapter<RecyclerView.View
                     startMovieScreen(infoCrew.id);
                 }
             });
-            Picasso.with(mCtx)
+            Glide.with(mCtx)
                     .load(Constants.BASE_SMALL_IMAGE_URL + infoCrew.poster_path)
                     .placeholder(R.drawable.placeholder_poster)
+                    .animate(R.animator.fade_out)
+                    .thumbnail(0.7f)
                     .into(vh.ivPoster_LIPCrew);
             vh.tvTitle_LIPCrew.setText(String.format("%s (%d)", infoCrew.title, getYear(infoCrew.release_date)));
             vh.tvJob_LIPCrew.setText(infoCrew.job);
@@ -224,6 +228,6 @@ public class PersonCreditsAdapter extends RecyclerView.Adapter<RecyclerView.View
         Bundle movieBundle = new Bundle();
         movieBundle.putInt(Constants.EXTRA_MOVIE_ID, id);
         movieDetailFragment.setArguments(movieBundle);
-        ((AppCompatActivity) mCtx).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, movieDetailFragment).addToBackStack("tagga").commit();
+        ((AppCompatActivity) mCtx).getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, movieDetailFragment).commit();
     }
 }

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lynx.moviezz.R;
-import com.example.lynx.moviezz.adapter.StillsImgAdapter;
+import com.example.lynx.moviezz.adapter.PersonScreensAdapter;
 import com.example.lynx.moviezz.api.TmdbApiManager;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.model.get_person_by_id.PersonTaggedImages;
@@ -40,13 +40,13 @@ public class PersonDetailStillsImgFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         data = (ResponsePersonById) getArguments().getSerializable(Constants.EXTRA_DATA);
-        stillsImgAdapter = new StillsImgAdapter(getActivity(), data.tagged_images);
+        stillsImgAdapter = new PersonScreensAdapter(getActivity(), data.tagged_images);
         if(data.tagged_images.total_pages > 1) {
             for(int i = 2; i <= data.tagged_images.total_pages; i++) {
                 TmdbApiManager.getInstance().getTmdbApi().getPersonTaggedImages(data.id, i, new Callback<PersonTaggedImages>() {
                     @Override
                     public void success(PersonTaggedImages personTaggedImages, Response response) {
-                        PersonTaggedImages filtered = ((StillsImgAdapter)stillsImgAdapter).filterStillsFromPosters(personTaggedImages);
+                        PersonTaggedImages filtered = ((PersonScreensAdapter)stillsImgAdapter).filterStillsFromPosters(personTaggedImages);
                         data.tagged_images.results.addAll(filtered.results);
                         stillsImgAdapter.notifyDataSetChanged();
                     }

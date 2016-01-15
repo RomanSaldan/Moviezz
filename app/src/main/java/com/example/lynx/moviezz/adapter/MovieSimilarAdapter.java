@@ -54,8 +54,10 @@ public class MovieSimilarAdapter extends RecyclerView.Adapter<MovieSimilarAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        Picasso.with(mCtx)
+        Glide.with(mCtx)
                 .load(Constants.BASE_SMALL_IMAGE_URL + data.get(position).poster_path)
+                .animate(R.animator.fade_out)
+                .thumbnail(0.7f)
                 .into(holder.ivSimilarPoster_LIS);
         holder.tvRating_LIS.setText(String.valueOf(data.get(position).vote_average) + " (" + data.get(position).vote_count + ")");
         holder.tvTitle_LIS.setText(data.get(position).title);

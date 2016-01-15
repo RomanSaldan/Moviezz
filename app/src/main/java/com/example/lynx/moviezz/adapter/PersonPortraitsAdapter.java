@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.activity.FullscreenImageActivity;
 import com.example.lynx.moviezz.global.Constants;
@@ -20,12 +22,12 @@ import java.util.List;
 /**
  * Created by Lynx on 12.01.2016.
  */
-public class ProfileImgAdapter extends RecyclerView.Adapter {
+public class PersonPortraitsAdapter extends RecyclerView.Adapter {
 
     private Context mCtx;
     private List<BaseImage> profiles;
 
-    public ProfileImgAdapter(Context mCtx, List<BaseImage> profiles) {
+    public PersonPortraitsAdapter(Context mCtx, List<BaseImage> profiles) {
         this.mCtx = mCtx;
         this.profiles = profiles;
     }
@@ -42,9 +44,11 @@ public class ProfileImgAdapter extends RecyclerView.Adapter {
         ProfileImgVH vh = (ProfileImgVH) holder;
         BaseImage currentImg = profiles.get(position);
         //TODO here define my own fade in animation coz glide default animation resize image so with placeholder its became an issue!!
-        Picasso.with(mCtx)
+        Glide.with(mCtx)
                 .load(Constants.BASE_SMALL_IMAGE_URL + currentImg.file_path)
                 .placeholder(R.drawable.placeholder_portrait)
+                .animate(R.animator.fade_out)
+                .thumbnail(0.3f)
                 .into(vh.ivProfileImage);
         vh.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
