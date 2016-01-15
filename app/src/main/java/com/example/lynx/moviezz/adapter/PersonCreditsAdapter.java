@@ -43,7 +43,10 @@ public class PersonCreditsAdapter extends RecyclerView.Adapter<RecyclerView.View
             Collections.sort(_data.cast, new Comparator<PersonCreditsCast>() {
                 @Override
                 public int compare(PersonCreditsCast lhs, PersonCreditsCast rhs) {
-                    return getYear(rhs.release_date) - getYear(lhs.release_date);
+                    if(lhs.poster_path == null && rhs.poster_path != null) return 1;
+                    else if(rhs.poster_path == null && lhs.poster_path != null) return -1;
+                    else
+                        return getYear(rhs.release_date) - getYear(lhs.release_date);
                 }
             });
             dataList.add("Cast");
@@ -56,7 +59,10 @@ public class PersonCreditsAdapter extends RecyclerView.Adapter<RecyclerView.View
             Collections.sort(_data.crew, new Comparator<PersonCreditsCrew>() {
                 @Override
                 public int compare(PersonCreditsCrew lhs, PersonCreditsCrew rhs) {
-                    return getYear(rhs.release_date) - getYear(lhs.release_date);
+                    if(lhs.poster_path == null && rhs.poster_path != null) return 1;
+                    else if(rhs.poster_path == null && lhs.poster_path != null) return -1;
+                    else
+                        return getYear(rhs.release_date) - getYear(lhs.release_date);
                 }
             });
             dataList.add("Crew");
