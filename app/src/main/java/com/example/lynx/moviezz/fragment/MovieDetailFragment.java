@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +30,7 @@ import com.example.lynx.moviezz.api.TmdbApiManager;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ResponseDetailMovieInfo;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.net.HttpURLConnection;
 
@@ -71,6 +73,10 @@ public class MovieDetailFragment extends Fragment {
     @Nullable
     @Bind(R.id.pbInital_FMD)
     protected ProgressBar pbInital_FMD;
+
+    @Nullable
+    @Bind(R.id.search_view)
+    protected MaterialSearchView search_view;
     //endregion
 
     @Nullable
@@ -87,6 +93,36 @@ public class MovieDetailFragment extends Fragment {
         movieId = getArguments().getInt(Constants.EXTRA_MOVIE_ID);
         initMovieData(movieId);
 
+        assert search_view != null;
+        search_view.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Do some magic
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Do some magic
+                return false;
+            }
+        });
+
+
+        search_view.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+                //Do some magic
+                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                //Do some magic
+                ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+            }
+        });
+
         return rootView;
     }
 
@@ -95,8 +131,9 @@ public class MovieDetailFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_movie_detail_fragment, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) searchItem.getActionView();
+        search_view.setMenuItem(searchItem);
+//        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView = (SearchView) searchItem.getActionView();
     }
 
     @Override
@@ -104,6 +141,9 @@ public class MovieDetailFragment extends Fragment {
         switch (item.getItemId()) {
             case android.R.id.home:
                 getActivity().getSupportFragmentManager().popBackStack();
+                return true;
+            case R.id.action_search:
+
                 return true;
         }
         return false;

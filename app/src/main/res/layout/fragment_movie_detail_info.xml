@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nsvAllScroll_FMDI"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -42,7 +42,8 @@
                     android:layout_below="@id/ivPoster_FMDI"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:text="PG"
+                    tools:text="PG"
+                    android:text="no data"
                     android:textSize="13sp"
                     android:textColor="@color/colorTextSecondary"/>
 
@@ -54,7 +55,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_toEndOf="@+id/ivPoster_FMDI"
                     android:layout_toRightOf="@+id/ivPoster_FMDI"
-                    android:text="Movie title (2015)"
+                    tools:text="Movie title (2015)"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorTextPrimary"/>
@@ -66,7 +67,7 @@
                     android:layout_alignLeft="@+id/tvTitle_FMDI"
                     android:layout_alignStart="@+id/tvTitle_FMDI"
                     android:layout_below="@+id/tvTitle_FMDI"
-                    android:text="tagline long line bla bla bla lbas fdsf sdf sdf "
+                    tools:text="tagline long line bla bla bla lbas fdsf sdf sdf "
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textSize="12sp"
                     android:textStyle="italic"
@@ -92,7 +93,8 @@
                     android:layout_alignLeft="@+id/tvTagline_FMDI"
                     android:layout_alignStart="@+id/tvTagline_FMDI"
                     android:layout_below="@+id/tvGenreTitle_FMDI"
-                    android:text="detective, comedy, dramma"
+                    tools:text="detective, comedy, dramma"
+                    android:text="no data"
                     android:textSize="13sp"
                     android:textColor="@color/colorTextSecondary"/>
 
@@ -116,7 +118,8 @@
                     android:layout_below="@+id/tvCountryTitle_FMDI"
                     android:layout_toEndOf="@+id/ivPoster_FMDI"
                     android:layout_toRightOf="@+id/ivPoster_FMDI"
-                    android:text="USA, Canada, France"
+                    tools:text="USA, Canada, France"
+                    android:text="no data"
                     android:textSize="13sp"
                     android:textColor="@color/colorTextSecondary"/>
 
@@ -140,7 +143,8 @@
                     android:layout_below="@+id/tvDurationTitle_FMDI"
                     android:layout_toEndOf="@+id/ivPoster_FMDI"
                     android:layout_toRightOf="@+id/ivPoster_FMDI"
-                    android:text="120 mins"
+                    tools:text="120 mins"
+                    android:text="no data"
                     android:textSize="13sp"
                     android:textColor="@color/colorTextSecondary"/>
 
@@ -164,7 +168,8 @@
                     android:layout_below="@+id/tvReleaseState_FMDI"
                     android:layout_toEndOf="@+id/ivPoster_FMDI"
                     android:layout_toRightOf="@+id/ivPoster_FMDI"
-                    android:text="19.06.2010"
+                    tools:text="19.06.2010"
+                    android:text="no data"
                     android:textSize="13sp"
                     android:textColor="@color/colorTextSecondary"/>
 
@@ -188,7 +193,8 @@
                     android:layout_alignLeft="@+id/tvReleaseDate_FMDI"
                     android:layout_alignStart="@+id/tvReleaseDate_FMDI"
                     android:layout_below="@+id/tvBudgetTitle_FMDI"
-                    android:text="999 999 999 $"
+                    tools:text="999 999 999 $"
+                    android:text="no data"
                     android:textSize="13sp"
                     android:textColor="@color/colorTextSecondary"/>
 
@@ -212,7 +218,8 @@
                     android:layout_alignLeft="@+id/tvBudget_FMDI"
                     android:layout_alignStart="@+id/tvBudget_FMDI"
                     android:layout_below="@+id/tvRevenueTitle_FMDI"
-                    android:text="999 999 999 99 $"
+                    tools:text="999 999 999 99 $"
+                    android:text="no data"
                     android:textSize="13sp"
                     android:textColor="@color/colorTextSecondary"/>
 
@@ -235,7 +242,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/rbMovieRating_FMDI"
                     android:layout_toRightOf="@id/rbMovieRating_FMDI"
-                    android:text="7 (1023 votes)"
+                    tools:text="7 (1023 votes)"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorTextPrimary"/>

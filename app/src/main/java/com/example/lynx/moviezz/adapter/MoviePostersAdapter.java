@@ -2,6 +2,7 @@ package com.example.lynx.moviezz.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.example.lynx.moviezz.model.get_movie_images_by_id.BaseImage;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Lynx on 14.01.2016.
