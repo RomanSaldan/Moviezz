@@ -1,74 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_width="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar_FMD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:fitsSystemWindows="true">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbar_FMD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp"
-            android:fitsSystemWindows="true"
-            app:expandedTitleTextAppearance="@style/DrawerTitleExpandedAppearance">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:id="@+id/ivCollapsed_FMD"
-                app:layout_collapseMode="parallax"
-                android:fitsSystemWindows="true"
-                android:scaleType="fitXY"/>
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_FMD"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
-                app:layout_collapseMode="pin"/>
-
-            <com.miguelcatalan.materialsearchview.MaterialSearchView
-                android:id="@+id/search_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="SEARCH FIELD!"
-                app:layout_collapseMode="pin"/>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabLayout_FMD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager_FMD"
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:fitsSystemWindows="true">
 
-    <ProgressBar
-        android:id="@+id/pbInital_FMD"
-        android:layout_width="wrap_content"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar_FMD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:fitsSystemWindows="true">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbar_FMD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleMarginEnd="64dp"
+                android:fitsSystemWindows="true"
+                app:expandedTitleTextAppearance="@style/DrawerTitleExpandedAppearance">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/ivCollapsed_FMD"
+                    app:layout_collapseMode="parallax"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="fitXY"/>
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_FMD"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    app:layout_collapseMode="pin"
+                    android:layout_gravity="top"/>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayout_FMD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_FMD"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <ProgressBar
+            android:id="@+id/pbInital_FMD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:layout_gravity="center"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <com.miguelcatalan.materialsearchview.MaterialSearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:layout_gravity="center"/>
+        android:hint="SEARCH FIELD!"
+        app:layout_collapseMode="pin"
+        android:layout_gravity="top"/>
 
-
-
-</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

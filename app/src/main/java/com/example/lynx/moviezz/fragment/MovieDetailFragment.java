@@ -1,7 +1,5 @@
 package com.example.lynx.moviezz.fragment;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,9 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,18 +17,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lynx.moviezz.R;
-import com.example.lynx.moviezz.activity.MainActivity;
 import com.example.lynx.moviezz.adapter.MovieDetailTabsAdapter;
+import com.example.lynx.moviezz.adapter.SearchMoviesAdapter;
 import com.example.lynx.moviezz.api.TmdbApiManager;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.get_movie_info_by_id.ResponseDetailMovieInfo;
+import com.example.lynx.moviezz.model.search_movie_by_title.MovieByTitle;
+import com.example.lynx.moviezz.model.search_movie_by_title.ResponseSearchMovieByTitle;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.net.HttpURLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,6 +49,7 @@ public class MovieDetailFragment extends Fragment {
     private int movieId;
     private ResponseDetailMovieInfo movieData;
     private MovieDetailTabsAdapter movieDetailTabsAdapter;
+    private SearchMoviesAdapter searchMoviesAdapter;
 
     //region ButterKnife binds
     @Nullable
@@ -93,36 +95,62 @@ public class MovieDetailFragment extends Fragment {
         movieId = getArguments().getInt(Constants.EXTRA_MOVIE_ID);
         initMovieData(movieId);
 
+        searchMoviesAdapter = new SearchMoviesAdapter(getActivity());
+        search_view.setAdapter(searchMoviesAdapter);
         assert search_view != null;
         search_view.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //Do some magic
+                TmdbApiManager.getInstance().getTmdbApi().searchMovieByTitle(query, 1, new Callback<ResponseSearchMovieByTitle>() {
+                    @Override
+                    public void success(ResponseSearchMovieByTitle responseSearchMovieByTitle, Response response) {
+                        if(responseSearchMovieByTitle.results.size() > 0) {
+                            MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
+                            Bundle movieBundle = new Bundle();
+                            movieBundle.putInt(Constants.EXTRA_MOVIE_ID, responseSearchMovieByTitle.results.get(0).id);
+                            movieDetailFragment.setArguments(movieBundle);
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, movieDetailFragment).commit();
+                        } else {
+                            Toast.makeText(getActivity(), "No result found", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 //Do some magic
+                if(newText.length() >= 4) {
+                    TmdbApiManager.getInstance().getTmdbApi().searchMovieByTitle(newText, 1, new Callback<ResponseSearchMovieByTitle>() {
+                        @Override
+                        public void success(ResponseSearchMovieByTitle responseSearchMovieByTitle, Response response) {
+                            List<MovieByTitle> suggestions = new ArrayList<MovieByTitle>();
+                            if(responseSearchMovieByTitle.results.size() <= 4) {
+                                suggestions = responseSearchMovieByTitle.results;
+                            } else {
+                                for(int i = 0; i < 4; i++) {
+                                    suggestions.add(responseSearchMovieByTitle.results.get(i));
+                                }
+                            }
+                            searchMoviesAdapter.updateData(suggestions);
+                            search_view.showSuggestions();
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+
+                        }
+                    });
+                } else searchMoviesAdapter.updateData(new ArrayList<MovieByTitle>());
                 return false;
             }
         });
-
-
-        search_view.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
-            @Override
-            public void onSearchViewShown() {
-                //Do some magic
-                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-            }
-
-            @Override
-            public void onSearchViewClosed() {
-                //Do some magic
-                ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-            }
-        });
-
         return rootView;
     }
 
@@ -132,8 +160,6 @@ public class MovieDetailFragment extends Fragment {
         inflater.inflate(R.menu.menu_movie_detail_fragment, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         search_view.setMenuItem(searchItem);
-//        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-//        SearchView searchView = (SearchView) searchItem.getActionView();
     }
 
     @Override
