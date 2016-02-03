@@ -77,8 +77,8 @@ public class MovieDetailFragment extends Fragment {
     protected ProgressBar pbInital_FMD;
 
     @Nullable
-    @Bind(R.id.search_view)
-    protected MaterialSearchView search_view;
+    @Bind(R.id.svMovies_FMD)
+    protected MaterialSearchView svMovies_FMD;
     //endregion
 
     @Nullable
@@ -96,9 +96,9 @@ public class MovieDetailFragment extends Fragment {
         initMovieData(movieId);
 
         searchMoviesAdapter = new SearchMoviesAdapter(getActivity());
-        search_view.setAdapter(searchMoviesAdapter);
-        assert search_view != null;
-        search_view.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+        svMovies_FMD.setAdapter(searchMoviesAdapter);
+        assert svMovies_FMD != null;
+        svMovies_FMD.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 TmdbApiManager.getInstance().getTmdbApi().searchMovieByTitle(query, 1, new Callback<ResponseSearchMovieByTitle>() {
@@ -139,7 +139,7 @@ public class MovieDetailFragment extends Fragment {
                                 }
                             }
                             searchMoviesAdapter.updateData(suggestions);
-                            search_view.showSuggestions();
+                            svMovies_FMD.showSuggestions();
                         }
 
                         @Override
@@ -157,9 +157,9 @@ public class MovieDetailFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_movie_detail_fragment, menu);
+        inflater.inflate(R.menu.menu_with_search, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        search_view.setMenuItem(searchItem);
+        svMovies_FMD.setMenuItem(searchItem);
     }
 
     @Override
@@ -167,9 +167,6 @@ public class MovieDetailFragment extends Fragment {
         switch (item.getItemId()) {
             case android.R.id.home:
                 getActivity().getSupportFragmentManager().popBackStack();
-                return true;
-            case R.id.action_search:
-
                 return true;
         }
         return false;

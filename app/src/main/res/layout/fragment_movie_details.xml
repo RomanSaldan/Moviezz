@@ -71,10 +71,10 @@
     </android.support.design.widget.CoordinatorLayout>
 
     <com.miguelcatalan.materialsearchview.MaterialSearchView
-        android:id="@+id/search_view"
+        android:id="@+id/svMovies_FMD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="SEARCH FIELD!"
+        android:hint="Movie title"
         app:layout_collapseMode="pin"
         android:layout_gravity="top"/>
 

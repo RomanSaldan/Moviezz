@@ -9,19 +9,29 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lynx.moviezz.R;
 import com.example.lynx.moviezz.adapter.PersonDetailsTabsAdapter;
+import com.example.lynx.moviezz.adapter.SearchPersonsAdapter;
 import com.example.lynx.moviezz.api.TmdbApiManager;
 import com.example.lynx.moviezz.global.Constants;
 import com.example.lynx.moviezz.global.Logg;
 import com.example.lynx.moviezz.model.get_person_by_id.ResponsePersonById;
+import com.example.lynx.moviezz.model.search_person_by_name.PersonByName;
+import com.example.lynx.moviezz.model.search_person_by_name.ResponseSearchPersonByName;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,6 +48,7 @@ public class PersonDetailFragment extends Fragment {
     private int personId;
     private ResponsePersonById personData;
     private PersonDetailsTabsAdapter detailsTabsAdapter;
+    private SearchPersonsAdapter searchPersonsAdapter;
 
     //region ButterKnife binds
     @Bind(R.id.appbar_FPD)
@@ -60,6 +71,9 @@ public class PersonDetailFragment extends Fragment {
 
     @Bind(R.id.tvPersonTitle_FPD)
     protected TextView tvPersonTitle_FPD;
+
+    @Bind(R.id.svPersons_FMD)
+    protected MaterialSearchView svPersons_FMD;
     //endregion
 
     @Nullable
@@ -73,7 +87,71 @@ public class PersonDetailFragment extends Fragment {
 
         personId = getArguments().getInt(Constants.EXTRA_PERSON_ID);
         initPersonData(personId);
+
+        searchPersonsAdapter = new SearchPersonsAdapter(getActivity());
+        svPersons_FMD.setAdapter(searchPersonsAdapter);
+        assert svPersons_FMD != null;
+        svPersons_FMD.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                TmdbApiManager.getInstance().getTmdbApi().searchPersonByName(query, 1, new Callback<ResponseSearchPersonByName>() {
+                    @Override
+                    public void success(ResponseSearchPersonByName responseSearchPersonByName, Response response) {
+                        if(responseSearchPersonByName.results.size() > 0) {
+                            MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
+                            Bundle movieBundle = new Bundle();
+                            movieBundle.putInt(Constants.EXTRA_PERSON_ID, responseSearchPersonByName.results.get(0).id);
+                            movieDetailFragment.setArguments(movieBundle);
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer_AM, movieDetailFragment).commit();
+                        } else {
+                            Toast.makeText(getActivity(), "No result found", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText.length() >= 4) {
+                    TmdbApiManager.getInstance().getTmdbApi().searchPersonByName(newText, 1, new Callback<ResponseSearchPersonByName>() {
+                        @Override
+                        public void success(ResponseSearchPersonByName responseSearchPersonByName, Response response) {
+                            List<PersonByName> suggestions = new ArrayList<>();
+                            if(responseSearchPersonByName.results.size() <= 4) {
+                                suggestions = responseSearchPersonByName.results;
+                            } else {
+                                for(int i = 0; i < 4; i++) {
+                                    suggestions.add(responseSearchPersonByName.results.get(i));
+                                }
+                            }
+                            searchPersonsAdapter.updateData(suggestions);
+                            svPersons_FMD.showSuggestions();
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+
+                        }
+                    });
+                } else searchPersonsAdapter.updateData(new ArrayList<PersonByName>());
+                return false;
+            }
+        });
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_with_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        svPersons_FMD.setMenuItem(searchItem);
     }
 
     @Override
